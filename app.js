@@ -44,12 +44,6 @@ function computeLiveStatus(grant) {
   return grant.status;
 }
 
-function fitBand(score) {
-  if (score >= 75) return { label: "Strong fit", color: "#1a7f37" };
-  if (score >= 45) return { label: "Moderate fit", color: "#b5642b" };
-  return { label: "Weak fit", color: "#8b8f98" };
-}
-
 function renderPriorityControls() {
   const wrap = document.getElementById("priority-controls");
   wrap.innerHTML = "";
@@ -164,8 +158,7 @@ function filteredSortedGrants() {
   return list;
 }
 
-function renderCard({ grant, score }) {
-  const band = fitBand(score);
+function renderCard({ grant }) {
   const liveStatus = computeLiveStatus(grant);
   const statusMeta = STATUS_META[liveStatus];
   const deadlineText = formatDeadline(grant);
@@ -200,10 +193,6 @@ function renderCard({ grant, score }) {
   card.className = "card";
   card.innerHTML = `
     <div class="card-top">
-      <div class="fit-badge" style="--fit-color:${band.color}">
-        <div class="fit-score">${score}</div>
-        <div class="fit-label">${band.label}</div>
-      </div>
       <div class="card-headline">
         <h3>${grant.name}</h3>
         <div class="agency">${grant.agency} · <span class="level">${grant.level}</span></div>
@@ -211,6 +200,7 @@ function renderCard({ grant, score }) {
       <span class="status-pill" style="background:${statusMeta.color}">${statusMeta.label}</span>
       <span class="level-pill" style="border-color:${levelMeta.color};color:${levelMeta.color}">${levelMeta.label}</span>
     </div>
+    <a class="source-link" href="${grant.url}" target="_blank" rel="noopener noreferrer">Visit official program page ↗</a>
     <p class="summary">${grant.summary}</p>
     <div class="why-fit"><strong>Why it fits Fort Lauderdale:</strong> ${grant.whyFit}</div>
     <div class="meta-grid">
@@ -222,7 +212,6 @@ function renderCard({ grant, score }) {
     ${deadlineLine}
     <div class="deadline-note">${grant.deadlineNote}</div>
     <div class="tags">${tagsHtml}</div>
-    <a class="source-link" href="${grant.url}" target="_blank" rel="noopener noreferrer">${grant.urlLabel} ↗</a>
   `;
   return card;
 }

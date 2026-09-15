@@ -184,38 +184,9 @@ main {
 
 .card-top {
   display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 0.75rem;
+  grid-template-columns: 1fr;
+  gap: 0.4rem;
   align-items: start;
-  position: relative;
-}
-
-.fit-badge {
-  --fit-color: #1a7f37;
-  width: 54px;
-  height: 54px;
-  border-radius: 50%;
-  border: 3px solid var(--fit-color);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.fit-score {
-  font-weight: 800;
-  font-size: 1rem;
-  color: var(--fit-color);
-  line-height: 1;
-}
-
-.fit-label {
-  font-size: 0.52rem;
-  color: var(--text-muted);
-  text-align: center;
-  line-height: 1;
-  margin-top: 2px;
 }
 
 .card-headline h3 {
@@ -326,17 +297,18 @@ main {
 }
 
 .source-link {
-  margin-top: auto;
   align-self: flex-start;
   font-size: 0.82rem;
   font-weight: 700;
-  color: var(--teal);
+  color: #fff;
+  background: var(--teal);
   text-decoration: none;
-  padding-top: 0.4rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
 }
 
 .source-link:hover {
-  text-decoration: underline;
+  background: var(--navy);
 }
 
 .empty {
