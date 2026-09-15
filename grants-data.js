@@ -92,7 +92,8 @@ const GRANTS = [
     cycle: "Annual",
     nextDeadlineDate: "2027-07-01",
     isEstimate: true,
-    deadlineNote: "2026 window was open Jul 1 – Sep 1, 2026 and has closed. Next window expected ~July 2027 — DEP hosts spring office hours before each cycle.",
+    deadlineNote:
+      "2026 window was open Jul 1 – Sep 1, 2026 and has closed. Next window expected ~July 2027 — DEP hosts spring office hours before each cycle. Funding confirmed stable: the SFY2026-27 state budget appropriated $160M to this program (up from prior year), and DEP's current grant cycle spans $230M+ combined across water restoration, resilience, and coastal protection — implementation dollars specifically grew even as standalone vulnerability-assessment planning grants shrank now that all 67 counties have completed assessments.",
     status: "closed_next_cycle",
     tags: { wq: 1, canal: 1, habitat: 0, boating: 0, resilience: 3 },
     whyFit:
@@ -136,7 +137,7 @@ const GRANTS = [
     cycle: "Annual",
     nextDeadlineDate: null,
     isEstimate: true,
-    deadlineNote: "FWC held FBIP technical-assistance sessions in 2026; exact FY2026-27 application deadline not confirmed in public search results — contact FBIP@MyFWC.com for the current cycle date.",
+    deadlineNote: "Confirmed active and funded for 2026. FWC held FBIP technical-assistance sessions in 2026; exact FY2026-27 application deadline not confirmed in public search results — contact FBIP@MyFWC.com for the current cycle date.",
     status: "contact_agency",
     tags: { wq: 0, canal: 2, habitat: 0, boating: 3, resilience: 0 },
     whyFit:
@@ -179,8 +180,8 @@ const GRANTS = [
     match: "Non-federal cost-share required",
     cycle: "Annual",
     nextDeadlineDate: "2027-07-01",
-    isEstimate: true,
-    deadlineNote: "Florida applicants submit to FWC by July 1 annually; 2026 deadline has passed. Next deadline is the standard July 1 date, expected July 1, 2027 — confirm with FWC.",
+    isEstimate: false,
+    deadlineNote: "Confirmed active: FWC's own published deadline is 5:00 PM on 07/01/2027 for the next Florida cycle. Florida applicants submit to FWC by July 1 annually; the 2026 deadline has passed.",
     status: "closed_next_cycle",
     tags: { wq: 0, canal: 1, habitat: 0, boating: 3, resilience: 0 },
     whyFit:
@@ -191,22 +192,23 @@ const GRANTS = [
   {
     id: "nfwf-ncrf",
     name: "National Coastal Resilience Fund (NCRF)",
-    agency: "National Fish & Wildlife Foundation (NFWF), primarily NOAA-funded",
+    agency: "National Fish & Wildlife Foundation (NFWF), funded by NOAA, DoD, Inflation Reduction Act, and private partners (Shell, Occidental)",
     level: "Federal (nonprofit-administered)",
     levelGroup: "Federal",
     summary:
-      "Funds nature-based solutions — living shorelines, mangrove/marsh restoration, floodplain reconnection — that reduce coastal flood/storm risk while restoring fish and wildlife habitat. Four tracks from planning ($100K-$1.5M) up to implementation ($1M-$7M).",
+      "Funds nature-based solutions — living shorelines, mangrove/marsh restoration, floodplain reconnection — that reduce coastal flood/storm risk while restoring fish and wildlife habitat. Four tracks from planning ($100K-$1.5M) up to implementation ($1M-$7M). Has run as an annual program since 2018, unlike NOAA's now-closed one-time Transformational Habitat Restoration & Coastal Resilience program.",
     eligibility: "Local governments, nonprofits, and other organizations; often via letters of support from municipalities.",
     fundingRange: "$100,000 – $7,000,000 depending on project phase.",
     match: "Match strongly preferred, not always mandatory",
     cycle: "Annual (pre-proposal then invited full proposal)",
     nextDeadlineDate: null,
     isEstimate: true,
-    deadlineNote: "2026 pre-proposals already closed; invited full proposals were due Jun 24, 2026. Next RFP typically releases in winter (roughly Nov-Jan) — watch nfwf.org for the 2027 announcement.",
+    deadlineNote:
+      "2026 pre-proposals already closed; invited full proposals were due Jun 24, 2026. Next RFP typically releases in winter (roughly Nov-Jan) — watch nfwf.org for the 2027 announcement. Caveat: a large share of recent NCRF rounds (~$92.5M of $139M in 2024) came from the Bipartisan Infrastructure Law, whose 5-year appropriations window runs out at the end of FY2026 — the multi-funder structure (IRA, DoD, private) makes total cancellation unlikely, but expect the 2027 round's size/shape to be uncertain until NFWF announces it.",
     status: "closed_next_cycle",
     tags: { wq: 1, canal: 1, habitat: 3, boating: 0, resilience: 3 },
     whyFit:
-      "Excellent fit for larger habitat-creation and living-shoreline projects along the ICW and canal seawalls that double as flood-resilience infrastructure — this is the biggest dollar-per-project program on this list.",
+      "Excellent fit for larger habitat-creation and living-shoreline projects along the ICW and canal seawalls that double as flood-resilience infrastructure — this is the biggest dollar-per-project program on this list, and unlike the program removed from this list, it's a genuinely recurring annual cycle.",
     url: "https://www.nfwf.org/programs/national-coastal-resilience-fund/national-coastal-resilience-fund-2026-request-proposals",
     urlLabel: "NFWF National Coastal Resilience Fund",
   },
@@ -301,29 +303,6 @@ const GRANTS = [
     urlLabel: "NOAA Marine Debris Program — Funding Opportunities",
   },
   {
-    id: "noaa-transformational-habitat",
-    name: "Transformational Habitat Restoration & Coastal Resilience",
-    agency: "NOAA Fisheries, Office of Habitat Conservation",
-    level: "Federal",
-    levelGroup: "Federal",
-    summary:
-      "Large-scale habitat restoration and coastal resilience awards funded under the Bipartisan Infrastructure Law — described by NOAA as the third and final round of this specific BIL funding line — for wetland, reef, and fish-passage restoration projects with community and economic co-benefits.",
-    eligibility: "State/local governments, tribes, nonprofits, and academic institutions.",
-    fundingRange: "$750,000 – $10,000,000 per award (typical range $4M–$6M).",
-    match: "Not required but strengthens applications",
-    cycle: "One-time (final round under current BIL authorization)",
-    nextDeadlineDate: null,
-    isEstimate: true,
-    deadlineNote:
-      "Described as the third and final round under the Bipartisan Infrastructure Law — check fisheries.noaa.gov for whether this specific NOFO is still open; there is no guarantee of a future round once this BIL funding line closes out.",
-    status: "contact_agency",
-    tags: { wq: 1, canal: 1, habitat: 3, boating: 0, resilience: 2 },
-    whyFit:
-      "The largest-dollar habitat/resilience program on this list — a strong fit for a major mangrove, living-shoreline, or fish-passage project on Fort Lauderdale's canal system, but likely a use-it-or-lose-it final round.",
-    url: "https://www.fisheries.noaa.gov/feature-story/100-million-available-transformational-habitat-restoration-and-coastal-resilience",
-    urlLabel: "NOAA Fisheries — Transformational Habitat Restoration and Coastal Resilience",
-  },
-  {
     id: "nfwf-five-star-urban-waters",
     name: "Five Star and Urban Waters Restoration Grant Program",
     agency: "National Fish & Wildlife Foundation (NFWF), with EPA and USFWS support",
@@ -382,15 +361,15 @@ const GRANTS = [
     fundingRange:
       "Sec. 204: 65% federal / 35% non-federal of incremental cost above least-cost disposal. Sec. 206: 65% federal / 35% non-federal, historically capped near $5M federal share for design+construction (confirm current statutory cap). Sec. 1135: 75% federal / 25% non-federal for design and construction.",
     match: "Required non-federal cost-share (see funding column) — can include in-kind services",
-    cycle: "Rolling — initiated by a local government's letter of request to the District",
+    cycle: "Rolling initiation, but new-project funding is currently uncertain (see note)",
     nextDeadlineDate: null,
     isEstimate: false,
     deadlineNote:
-      "No fixed annual deadline — the process starts with the City sending a letter of interest to the Jacksonville District, which then screens the project against program criteria before Congress-appropriated CAP funding is assigned.",
-    status: "rolling",
+      "FUNDING RISK: the Administration's budget request excluded CAP funding in both FY2025 and FY2026; Congress partially backfilled FY2025 with $100M via the American Relief Act (mostly flood/storm-damage projects), and USACE is currently operating under a continuing resolution through Jan 30, 2026. The authorities remain law and a City can still submit a letter of interest to get in the queue, but treat new-project funding as genuinely uncertain right now — call the Jacksonville District first to ask whether they're accepting new CAP study starts before investing staff time.",
+    status: "contact_agency",
     tags: { wq: 1, canal: 3, habitat: 2, boating: 0, resilience: 1 },
     whyFit:
-      "Purpose-built for exactly this kind of work: using dredged canal material to build habitat, restoring aquatic ecosystems degraded by navigation dredging, or fixing environmental side-effects of an existing Corps project on the ICW — and the Corps designs/builds it with the City as cost-share partner rather than the City running the project alone.",
+      "Purpose-built for exactly this kind of work — using dredged canal material to build habitat, restoring aquatic ecosystems degraded by navigation dredging, or fixing environmental side-effects of an existing Corps project on the ICW, with the Corps designing/building it as cost-share partner — but currently the highest funding-risk program on this list; confirm active appropriations before relying on it.",
     url: "https://www.saj.usace.army.mil/Missions/Civil-Works/",
     urlLabel: "USACE Jacksonville District — Civil Works / Continuing Authorities Program",
   },
@@ -423,18 +402,19 @@ const GRANTS = [
     level: "Federal (state-administered)",
     levelGroup: "State",
     summary:
-      "Matching grants (typically 50/50) for public tree canopy, urban forest management planning, and tree inventory/assessment work. A Bipartisan-Infrastructure-Law-funded track (UCF-PPIC) targets invasive species control, reforestation, and improving stormwater retention through urban forestry, with the match requirement waived.",
+      "The core Urban & Community Forestry Program is a long-standing, annually-appropriated USDA Forest Service program (predates the Bipartisan Infrastructure Law) funding public tree canopy, urban forest management planning, and tree inventory/assessment work — typically 50/50 matching grants. A separate, BIL/IRA-funded add-on track (UCF-PPIC) has additionally targeted invasive species control, reforestation, and stormwater retention with the match waived in several states.",
     eligibility: "Local governments, educational institutions, tribal governments, and legally organized nonprofit volunteer organizations.",
-    fundingRange: "Varies by category; UCF-PPIC track funds full project cost (no match required).",
-    match: "Typically 50/50; waived under the current UCF-PPIC/BIL track",
+    fundingRange: "Varies by category; the base program is typically a 50/50 match, some grants up to $50,000.",
+    match: "Typically 50/50 on the base program",
     cycle: "Periodic solicitations via grants.fdacs.gov",
     nextDeadlineDate: null,
     isEstimate: true,
-    deadlineNote: "Check grants.fdacs.gov for the current Urban & Community Forestry solicitation window and whether the match-waived UCF-PPIC track is still open.",
+    deadlineNote:
+      "Check grants.fdacs.gov for the current Urban & Community Forestry solicitation window. The base program is a durable annual line item, so it's a safer long-term bet than most other BIL-touched programs on this list — but confirm directly whether the match-waived UCF-PPIC track is still open in Florida specifically, since its supplemental BIL/IRA funding is time-limited.",
     status: "contact_agency",
     tags: { wq: 2, canal: 1, habitat: 1, boating: 0, resilience: 2 },
     whyFit:
-      "An indirect but real lever for canal water quality: waterfront and floodplain tree canopy reduces stormwater runoff and nutrient loading into canals, and the current BIL-funded track explicitly targets stormwater retention with the match waived.",
+      "An indirect but real lever for canal water quality: waterfront and floodplain tree canopy reduces stormwater runoff and nutrient loading into canals, and one of the more funding-stable programs on this list since it predates the current BIL/IRA-era volatility affecting several other federal entries here.",
     url: "https://www.fdacs.gov/Forest-Wildfire/For-Communities/Urban-Forestry/Florida-Urban-and-Community-Forestry-Grants",
     urlLabel: "Florida Urban and Community Forestry Grants (FDACS/Florida Forest Service)",
   },
@@ -476,11 +456,11 @@ const GRANTS = [
     nextDeadlineDate: "2026-09-30",
     isEstimate: false,
     deadlineNote:
-      "Electronically submitted applications from invited applicants are due 09/30/2026, 11:59 PM ET. You must contact your local Coastal Program office first — an uninvited application won't be accepted. This is very time-sensitive; call now if interested.",
-    status: "opening_soon",
+      "Electronically submitted applications from invited applicants are due 09/30/2026, 11:59 PM ET — that's only ~2 weeks out, and since an invitation is required first, this specific window may already be effectively closed to a first-time applicant; treat FY2026 as a relationship-building contact and target the FY2027 cycle for an actual application. Outlook note: the Administration's FY2027 budget request cuts FWS discretionary funding ~20% below the FY2026 enacted level, so confirm the Coastal Program's funding specifically with your local office rather than assuming continuity.",
+    status: "contact_agency",
     tags: { wq: 1, canal: 1, habitat: 3, boating: 0, resilience: 1 },
     whyFit:
-      "Direct USFWS partnership channel for living-shoreline and coastal-wetland restoration along the ICW — smaller and more relationship-driven than NFWF's big-dollar programs, which can make it a faster path for a well-scoped habitat project.",
+      "Direct USFWS partnership channel for living-shoreline and coastal-wetland restoration along the ICW — smaller and more relationship-driven than NFWF's big-dollar programs, which can make it a faster path for a well-scoped habitat project, funding outlook permitting.",
     url: "https://www.fws.gov/program/coastal",
     urlLabel: "U.S. Fish & Wildlife Service — Coastal Program",
   },
