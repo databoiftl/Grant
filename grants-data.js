@@ -26,10 +26,11 @@ const GRANTS = [
     level: "Regional Special District",
     levelGroup: "Regional",
     summary:
-      "FIND's flagship cost-share program for public navigation, boater access, mooring field management, waterfront parks, inlet management, environmental education, and boating safety. Broward County is one of FIND's member counties (District runs Nassau to Miami-Dade).",
+      "FIND's flagship cost-share program. Confirmed eligible project categories: navigation channel dredging, navigation aids/markers, inlet management, shoreline stabilization, spoil-site acquisition/development, boat ramps, docking/mooring facilities, derelict vessel removal, environmental education, fishing piers, waterfront parks/boardwalks, maritime management planning, boating safety, beach renourishment, and environmental restoration. Broward County is one of FIND's member counties (District runs Nassau to Miami-Dade).",
     eligibility: "Local governments, counties, and port authorities within FIND's district (includes Broward County / Fort Lauderdale).",
-    fundingRange: "Typically 50% cost-share; project sizes vary widely. District has funded $193M+ in local projects over 27 years.",
-    match: "Local match required (historically up to 50%)",
+    fundingRange:
+      "Up to 75% District funding for public navigation projects; up to 50% for other eligible categories (ramps, docks, parks, etc.). District has funded $193M+ in local projects over 27 years.",
+    match: "Local match required — 25% (navigation projects) to 50% (most other categories)",
     cycle: "Annual",
     nextDeadlineDate: "2027-03-30",
     isEstimate: true,
@@ -71,9 +72,10 @@ const GRANTS = [
     levelGroup: "State",
     summary:
       "Funds best-management-practice demonstration and nonpoint-source pollution reduction, with priority for projects implementing an EPA-approved Watershed-Based Plan (e.g., a Basin Management Action Plan/BMAP). ~$6-8M available annually statewide.",
-    eligibility: "Local governments, water management entities, and other organizations implementing an approved watershed plan.",
+    eligibility:
+      "State agencies, local governments, special districts, water management districts, national estuary programs, and (for the broader 319 program) nonprofits and academic institutions implementing an approved watershed plan.",
     fundingRange: "~$8M/year statewide pool; individual awards vary by project.",
-    match: "Not always required, but strengthens competitiveness",
+    match: "Local sponsor must provide a minimum 40% match",
     cycle: "Rolling / semi-annual review",
     nextDeadlineDate: null,
     isEstimate: false,
@@ -117,12 +119,14 @@ const GRANTS = [
     summary:
       "Competitive grants for boating-access projects benefitting motorized vessels: boat ramps, parking, docks, channel markers, and other boating-related infrastructure and services.",
     eligibility: "County governments, municipalities, and other Florida governmental entities.",
-    fundingRange: "Varies by project; funded from vessel registration fees.",
+    fundingRange:
+      "Varies by project; funded by motor-fuel tax revenues deposited into FWC's Marine Resources Conservation Trust Fund (not vessel registration fees, which fund other boating programs).",
     match: "Not always required — check current solicitation",
     cycle: "Annual",
     nextDeadlineDate: null,
     isEstimate: true,
-    deadlineNote: "Confirmed active and funded for 2026. FWC held FBIP technical-assistance sessions in 2026; exact FY2026-27 application deadline not confirmed in public search results — contact FBIP@MyFWC.com for the current cycle date.",
+    deadlineNote:
+      "As of the most recent public guidance, FBIP's application period was closed with the next cycle to be announced for 2027 — contact FBIP@MyFWC.com to confirm current status before assuming this is open.",
     status: "contact_agency",
     tags: { wq: 0, canal: 2, habitat: 0, boating: 3, resilience: 0 },
     whyFit:
@@ -160,9 +164,11 @@ const GRANTS = [
     levelGroup: "Federal",
     summary:
       "Federal cost-share funding to build, renovate, and maintain facilities and amenities for transient recreational vessels 26+ feet, staying no more than 15 days — think transient docks, pump-outs, and dockside amenities.",
-    eligibility: "Public entities and, for some facilities, private marinas providing public transient access; routed through FWC in Florida.",
-    fundingRange: "Federal cost-share awards; typical range varies by tier (Tier 1 smaller local projects, Tier 2 larger/multi-state).",
-    match: "Non-federal cost-share required",
+    eligibility:
+      "Local governments, tribes, port districts, nonprofit and private organizations, state agencies, and some special-purpose districts; routed through FWC in Florida.",
+    fundingRange:
+      "Tier 1: Florida's total state allocation is $300,000, no single project exceeding that. Tier 2: $9M-$14M available nationally per cycle, competitive.",
+    match: "Up to 25% non-federal match required",
     cycle: "Annual",
     nextDeadlineDate: "2027-07-01",
     isEstimate: false,
@@ -182,9 +188,10 @@ const GRANTS = [
     levelGroup: "Federal",
     summary:
       "Funds nature-based solutions — living shorelines, mangrove/marsh restoration, floodplain reconnection — that reduce coastal flood/storm risk while restoring fish and wildlife habitat. Four tracks from planning ($100K-$1.5M) up to implementation ($1M-$7M). Has run as an annual program since 2018, unlike NOAA's now-closed one-time Transformational Habitat Restoration & Coastal Resilience program.",
-    eligibility: "Local governments, nonprofits, and other organizations; often via letters of support from municipalities.",
+    eligibility:
+      "Broad: nonprofit 501(c) organizations, state/territorial and local/municipal governments, tribal governments and organizations, educational institutions, and commercial (for-profit) organizations.",
     fundingRange: "$100,000 – $7,000,000 depending on project phase.",
-    match: "Match strongly preferred, not always mandatory",
+    match: "Not required — NFWF does not mandate a non-federal match, though one is encouraged and strengthens competitiveness",
     cycle: "Annual (pre-proposal then invited full proposal)",
     nextDeadlineDate: null,
     isEstimate: true,
@@ -204,10 +211,10 @@ const GRANTS = [
     level: "Nonprofit (state-affiliated)",
     levelGroup: "Private",
     summary:
-      "Distributes roughly $6-9M/year statewide across conservation sub-programs, including Manatee Conservation awards that specifically fund seagrass restoration — directly relevant to manatee zones in Fort Lauderdale's canals and ICW.",
+      "The Foundation distributes roughly $6-9M/year statewide across many conservation sub-programs (not all waterway-relevant — e.g., its Conserve Wildlife grants fund black bear and general wildlife-diversity work). The Manatee Conservation sub-program is the relevant one here, specifically funding seagrass restoration — directly relevant to manatee zones in Fort Lauderdale's canals and ICW.",
     eligibility: "Local governments, nonprofits, and research/restoration partners.",
-    fundingRange: "Varies by sub-program; smaller, more accessible awards than federal mega-grants.",
-    match: "Varies by sub-program",
+    fundingRange: "Individual grants typically $1,000 – $25,000; requests up to $75,000 will be considered.",
+    match: "Not a prerequisite, but ability to secure matching funds strengthens an application",
     cycle: "Multiple sub-programs, typically 1-2 cycles/year",
     nextDeadlineDate: null,
     isEstimate: true,
@@ -233,8 +240,9 @@ const GRANTS = [
     cycle: "Annual",
     nextDeadlineDate: "2026-09-30",
     isEstimate: true,
-    deadlineNote: "Historically opens ~Sep 16 and closes ~Sep 30 each year via DEP's Grantee Portal — this window may be opening imminently. Confirm exact FY2026-27 dates on the DEP portal right away, this is time-sensitive.",
-    status: "opening_soon",
+    deadlineNote:
+      "Historically opens ~Sep 16 and closes ~Sep 30 each year via DEP's Grantee Portal, which is the basis for the date above — but DEP's site already lists both 'FY2026-2027 FRDAP Application Instructions' and 'FY2027-2028 FRDAP Application Instructions,' so don't assume Sept 30, 2026 is still the live deadline. Confirm the current cycle directly on the DEP portal before treating this as time-sensitive.",
+    status: "contact_agency",
     tags: { wq: 0, canal: 1, habitat: 0, boating: 2, resilience: 2 },
     whyFit:
       "Good fit for waterfront-park, fishing-pier, or public boat-ramp components of a larger waterways project — smaller dollar cap but fast-moving annual window.",
@@ -243,13 +251,14 @@ const GRANTS = [
   },
   {
     id: "nfwf-marine-debris-hurricane",
-    name: "Marine Debris Removal — Hurricane-Impacted Communities",
+    name: "Hurricane Response Marine Debris Removal Fund",
     agency: "National Fish & Wildlife Foundation (NFWF), in partnership with NOAA",
     level: "Federal (NOAA-funded, NFWF-administered)",
     levelGroup: "Federal",
     summary:
-      "Up to $11M nationally to assess and remove marine debris — trash, derelict gear, and other pollution sources sitting in the water column — in communities affected by Hurricanes Idalia, Helene, Milton, and Typhoon Mawar, including a $7.725M Gulf of America Alliance regional track spanning AL/FL/LA/MS/TX.",
-    eligibility: "Local governments in eligible hurricane-impacted states/counties; Florida track appears limited to local governments (not private citizens or corporations).",
+      "Up to $11M nationally to assess and remove marine debris — trash, derelict gear, and other pollution sources sitting in the water column — in coastal counties of FL, GA, NC, SC, and Guam affected by Hurricanes Idalia, Helene, and Milton, and Typhoon Mawar, including a $7.725M Gulf of America Alliance regional track spanning AL/FL/LA/MS/TX.",
+    eligibility:
+      "Broad: nonprofit 501(c) organizations, state/territorial and local/municipal governments, commercial (for-profit) organizations, tribal governments and organizations, and educational institutions.",
     fundingRange: "Up to $11M nationally; $7.725M in the 5-state Gulf regional competitive track.",
     match: "Not required, but cost-share is scored favorably",
     cycle: "One-time (disaster-recovery supplemental)",
@@ -261,8 +270,8 @@ const GRANTS = [
     tags: { wq: 1, canal: 2, habitat: 1, boating: 0, resilience: 1 },
     whyFit:
       "Rare direct federal dollars for physically removing debris from local waterways after a major storm — a strong, time-sensitive fit if any recent named storm affected Fort Lauderdale's canals or ICW frontage. Deadline is about five weeks out.",
-    url: "https://marinedebris.noaa.gov/resources/funding-opportunities",
-    urlLabel: "NOAA Marine Debris Program — Funding Opportunities",
+    url: "https://www.nfwf.org/programs/hurricane-response-marine-debris-removal-fund",
+    urlLabel: "NFWF Hurricane Response Marine Debris Removal Fund",
   },
   {
     id: "noaa-marine-debris-general",
@@ -372,7 +381,8 @@ const GRANTS = [
     cycle: "Ongoing cooperative agreements, not a competitive annual cycle",
     nextDeadlineDate: null,
     isEstimate: false,
-    deadlineNote: "No application deadline — this is a standing cooperative-agreement mechanism. Contact the USGS Caribbean-Florida Water Science Center to scope a canal water-quality monitoring partnership.",
+    deadlineNote:
+      "No application deadline — this is a standing cooperative-agreement mechanism. Contact the USGS Caribbean-Florida Water Science Center, which has an office right in Davie, Broward County (3321 College Avenue, Davie, FL 33314), to scope a canal water-quality monitoring partnership.",
     status: "rolling",
     tags: { wq: 3, canal: 1, habitat: 0, boating: 0, resilience: 0 },
     whyFit:
@@ -391,11 +401,11 @@ const GRANTS = [
     eligibility: "Local governments, educational institutions, tribal governments, and legally organized nonprofit volunteer organizations.",
     fundingRange: "Varies by category; the base program is typically a 50/50 match, some grants up to $50,000.",
     match: "Typically 50/50 on the base program",
-    cycle: "Periodic solicitations via grants.fdacs.gov",
-    nextDeadlineDate: null,
+    cycle: "Annual, via grants.fdacs.gov",
+    nextDeadlineDate: "2027-03-07",
     isEstimate: true,
     deadlineNote:
-      "Check grants.fdacs.gov for the current Urban & Community Forestry solicitation window. The base program is a durable annual line item, so it's a safer long-term bet than most other BIL-touched programs on this list — but confirm directly whether the match-waived UCF-PPIC track is still open in Florida specifically, since its supplemental BIL/IRA funding is time-limited.",
+      "The FY2026 cycle had pre-proposals due Mar 7, 2026 and full proposals due Mar 11, 2026 (both already closed) — the estimated date above projects that same early-March pattern forward one year. Caveat: FDACS runs multiple, separately-scheduled forestry grant programs (e.g., the unrelated Florida's Future Forests carbon-sequestration program has its own March deadline) — confirm on grants.fdacs.gov that you're tracking the Urban & Community Forestry solicitation specifically, not a similarly-timed but different program.",
     status: "contact_agency",
     tags: { wq: 2, canal: 1, habitat: 1, boating: 0, resilience: 2 },
     whyFit:
@@ -434,7 +444,8 @@ const GRANTS = [
     levelGroup: "Federal",
     summary:
       "Technical and financial assistance for habitat protection/restoration projects (living shorelines, salt marsh, oyster reef, coastal wetlands) developed through direct partnership with a local USFWS Coastal Program biologist, rather than an open competitive RFP.",
-    eligibility: "State/tribal agencies, local governments, and conservation partners — coordination with the local Coastal Program office is required before an application can be submitted.",
+    eligibility:
+      "State/tribal agencies, local governments, and conservation partners — coordination with the local Coastal Program office is required before an application can be submitted. For Fort Lauderdale, that's the South Florida Ecological Services Field Office in Vero Beach, FL (which covers Broward County), not a generic national contact point.",
     fundingRange: "Individual project support varies; the program's FY26 national round funded 28 projects with $25.7M combined.",
     match: "Varies by project — partner contributions are commonly leveraged alongside FWS funds",
     cycle: "Invitation-based — must contact the local Coastal Program office before applying",
