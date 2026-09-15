@@ -17,6 +17,7 @@ const GRANTS = [
     name: "Waterway Assistance Program (WAP)",
     agency: "Florida Inland Navigation District (FIND)",
     level: "Regional Special District",
+    levelGroup: "Regional",
     summary:
       "FIND's flagship cost-share program for public navigation, boater access, mooring field management, waterfront parks, inlet management, environmental education, and boating safety. Broward County is one of FIND's member counties (District runs Nassau to Miami-Dade).",
     eligibility: "Local governments, counties, and port authorities within FIND's district (includes Broward County / Fort Lauderdale).",
@@ -38,6 +39,7 @@ const GRANTS = [
     name: "Water Quality Improvement Grant Program",
     agency: "Florida Dept. of Environmental Protection (FDEP)",
     level: "State",
+    levelGroup: "State",
     summary:
       "Statewide DEP grant helping communities fund wastewater (incl. septic-to-sewer conversion), stormwater, and nutrient-reduction projects in impaired waterbodies — the category also includes named programs for Indian River Lagoon, Biscayne Bay, and Caloosahatchee.",
     eligibility: "Local governments, counties, special districts, water/wastewater utilities.",
@@ -59,6 +61,7 @@ const GRANTS = [
     name: "Nonpoint Source Management Grants (Section 319 / SWAG)",
     agency: "Florida DEP, Nonpoint Source Management Program (EPA Clean Water Act §319 + state SWAG match)",
     level: "Federal pass-through via State",
+    levelGroup: "State",
     summary:
       "Funds best-management-practice demonstration and nonpoint-source pollution reduction, with priority for projects implementing an EPA-approved Watershed-Based Plan (e.g., a Basin Management Action Plan/BMAP). ~$6-8M available annually statewide.",
     eligibility: "Local governments, water management entities, and other organizations implementing an approved watershed plan.",
@@ -80,6 +83,7 @@ const GRANTS = [
     name: "Resilient Florida Grant Program",
     agency: "Florida DEP, Office of Resilience & Coastal Protection",
     level: "State",
+    levelGroup: "State",
     summary:
       "Funds vulnerability assessments and implementation of adaptation/mitigation projects (flood control, shoreline stabilization, stormwater upgrades) for counties, municipalities, and regional resilience entities.",
     eligibility: "Counties, municipalities, special districts with relevant authority, and regional resilience entities. Project must tie to a documented vulnerability assessment.",
@@ -101,6 +105,7 @@ const GRANTS = [
     name: "Cooperative Funding Initiative",
     agency: "South Florida Water Management District (SFWMD)",
     level: "Regional Special District",
+    levelGroup: "Regional",
     summary:
       "SFWMD cost-shares local water-resource projects (water quality treatment, stormwater retrofits, alternative water supply) with municipalities and counties in its district, which includes Broward County.",
     eligibility: "Local governments, water providers, and other entities within SFWMD boundaries.",
@@ -122,6 +127,7 @@ const GRANTS = [
     name: "Florida Boating Improvement Program (FBIP)",
     agency: "Florida Fish & Wildlife Conservation Commission (FWC)",
     level: "State",
+    levelGroup: "State",
     summary:
       "Competitive grants for boating-access projects benefitting motorized vessels: boat ramps, parking, docks, channel markers, and other boating-related infrastructure and services.",
     eligibility: "County governments, municipalities, and other Florida governmental entities.",
@@ -143,6 +149,7 @@ const GRANTS = [
     name: "Derelict Vessel Removal Grant Program",
     agency: "Florida Fish & Wildlife Conservation Commission (FWC)",
     level: "State",
+    levelGroup: "State",
     summary:
       "Reimburses local governments for removing derelict vessels from public waters. FWC pays 100% of eligible removal costs. Accepted continuously, funded first-come-first-served while money is available.",
     eligibility: "Local governments (cities, counties).",
@@ -164,6 +171,7 @@ const GRANTS = [
     name: "Boating Infrastructure Grant (BIG) — Tier 1 & 2",
     agency: "U.S. Fish & Wildlife Service, administered in Florida by FWC",
     level: "Federal (state-administered)",
+    levelGroup: "Federal",
     summary:
       "Federal cost-share funding to build, renovate, and maintain facilities and amenities for transient recreational vessels 26+ feet, staying no more than 15 days — think transient docks, pump-outs, and dockside amenities.",
     eligibility: "Public entities and, for some facilities, private marinas providing public transient access; routed through FWC in Florida.",
@@ -185,6 +193,7 @@ const GRANTS = [
     name: "National Coastal Resilience Fund (NCRF)",
     agency: "National Fish & Wildlife Foundation (NFWF), primarily NOAA-funded",
     level: "Federal (nonprofit-administered)",
+    levelGroup: "Federal",
     summary:
       "Funds nature-based solutions — living shorelines, mangrove/marsh restoration, floodplain reconnection — that reduce coastal flood/storm risk while restoring fish and wildlife habitat. Four tracks from planning ($100K-$1.5M) up to implementation ($1M-$7M).",
     eligibility: "Local governments, nonprofits, and other organizations; often via letters of support from municipalities.",
@@ -206,6 +215,7 @@ const GRANTS = [
     name: "Conservation Grants (incl. Manatee/Seagrass Restoration awards)",
     agency: "Fish & Wildlife Foundation of Florida",
     level: "Nonprofit (state-affiliated)",
+    levelGroup: "Private",
     summary:
       "Distributes roughly $6-9M/year statewide across conservation sub-programs, including Manatee Conservation awards that specifically fund seagrass restoration — directly relevant to manatee zones in Fort Lauderdale's canals and ICW.",
     eligibility: "Local governments, nonprofits, and research/restoration partners.",
@@ -227,6 +237,7 @@ const GRANTS = [
     name: "Florida Recreation Development Assistance Program (FRDAP)",
     agency: "Florida Dept. of Environmental Protection (FDEP)",
     level: "State",
+    levelGroup: "State",
     summary:
       "Reimbursement grant for acquiring or developing public outdoor recreation land and facilities — covers waterfront parks, boat ramps, fishing/viewing piers, and recreational trails along the water.",
     eligibility: "All Florida county governments, municipalities, and other legally constituted local governmental recreation entities.",
@@ -242,6 +253,169 @@ const GRANTS = [
       "Good fit for waterfront-park, fishing-pier, or public boat-ramp components of a larger waterways project — smaller dollar cap but fast-moving annual window.",
     url: "https://floridadep.gov/lands/land-and-recreation-grants/content/florida-recreation-development-assistance-program",
     urlLabel: "FDEP Florida Recreation Development Assistance Program (FRDAP)",
+  },
+  {
+    id: "nfwf-marine-debris-hurricane",
+    name: "Marine Debris Removal — Hurricane-Impacted Communities",
+    agency: "National Fish & Wildlife Foundation (NFWF), in partnership with NOAA",
+    level: "Federal (NOAA-funded, NFWF-administered)",
+    levelGroup: "Federal",
+    summary:
+      "Up to $11M nationally to assess and remove marine debris in communities affected by Hurricanes Idalia, Helene, Milton, and Typhoon Mawar, including a $7.725M Gulf of America Alliance regional track spanning AL/FL/LA/MS/TX.",
+    eligibility: "Local governments in eligible hurricane-impacted states/counties; Florida track appears limited to local governments (not private citizens or corporations).",
+    fundingRange: "Up to $11M nationally; $7.725M in the 5-state Gulf regional competitive track.",
+    match: "Not required, but cost-share is scored favorably",
+    cycle: "One-time (disaster-recovery supplemental)",
+    nextDeadlineDate: "2026-10-21",
+    isEstimate: false,
+    deadlineNote:
+      "Full proposals due Oct 21, 2026, 11:59 PM EDT. IMPORTANT: this track targets counties impacted by Hurricanes Idalia/Helene/Milton — confirm Broward County/Fort Lauderdale is on the current eligible-county list before investing staff time; if not, the general NOAA Marine Debris Program entry below is the better ongoing channel.",
+    status: "open",
+    tags: { wq: 1, canal: 2, habitat: 1, boating: 0, resilience: 1 },
+    whyFit:
+      "Rare direct federal dollars for physically removing debris from local waterways after a major storm — a strong, time-sensitive fit if any recent named storm affected Fort Lauderdale's canals or ICW frontage. Deadline is about five weeks out.",
+    url: "https://marinedebris.noaa.gov/resources/funding-opportunities",
+    urlLabel: "NOAA Marine Debris Program — Funding Opportunities",
+  },
+  {
+    id: "noaa-marine-debris-general",
+    name: "Marine Debris Removal & Prevention Grants (recurring)",
+    agency: "NOAA Marine Debris Program",
+    level: "Federal",
+    levelGroup: "Federal",
+    summary:
+      "NOAA's baseline, recurring marine-debris funding line — separate from the hurricane-specific track above — covering removal, prevention, and assessment projects, typically posted as annual Federal Funding Opportunities (FFOs) directly through NOAA or partner administrators like NFWF.",
+    eligibility: "State/local governments, tribes, and NGOs — exact eligibility varies by the specific FFO.",
+    fundingRange: "Varies by year; recent national removal/prevention rounds have totaled multiple millions of dollars.",
+    match: "Varies by FFO",
+    cycle: "Annual / periodic FFOs",
+    nextDeadlineDate: null,
+    isEstimate: true,
+    deadlineNote:
+      "No single fixed date — NOAA posts specific Federal Funding Opportunities on this page throughout the year (also mirrored on grants.gov). Worth monitoring year-round for the next general removal/prevention cycle.",
+    status: "contact_agency",
+    tags: { wq: 1, canal: 2, habitat: 1, boating: 1, resilience: 0 },
+    whyFit:
+      "NOAA's standing marine-debris channel — the one to watch for canal and ICW debris/derelict-gear removal funding outside of the current disaster-specific opportunity.",
+    url: "https://marinedebris.noaa.gov/resources/funding-opportunities",
+    urlLabel: "NOAA Marine Debris Program — Funding Opportunities",
+  },
+  {
+    id: "noaa-transformational-habitat",
+    name: "Transformational Habitat Restoration & Coastal Resilience",
+    agency: "NOAA Fisheries, Office of Habitat Conservation",
+    level: "Federal",
+    levelGroup: "Federal",
+    summary:
+      "Large-scale habitat restoration and coastal resilience awards funded under the Bipartisan Infrastructure Law — described by NOAA as the third and final round of this specific BIL funding line — for wetland, reef, and fish-passage restoration projects with community and economic co-benefits.",
+    eligibility: "State/local governments, tribes, nonprofits, and academic institutions.",
+    fundingRange: "$750,000 – $10,000,000 per award (typical range $4M–$6M).",
+    match: "Not required but strengthens applications",
+    cycle: "One-time (final round under current BIL authorization)",
+    nextDeadlineDate: null,
+    isEstimate: true,
+    deadlineNote:
+      "Described as the third and final round under the Bipartisan Infrastructure Law — check fisheries.noaa.gov for whether this specific NOFO is still open; there is no guarantee of a future round once this BIL funding line closes out.",
+    status: "contact_agency",
+    tags: { wq: 1, canal: 1, habitat: 3, boating: 0, resilience: 2 },
+    whyFit:
+      "The largest-dollar habitat/resilience program on this list — a strong fit for a major mangrove, living-shoreline, or fish-passage project on Fort Lauderdale's canal system, but likely a use-it-or-lose-it final round.",
+    url: "https://www.fisheries.noaa.gov/feature-story/100-million-available-transformational-habitat-restoration-and-coastal-resilience",
+    urlLabel: "NOAA Fisheries — Transformational Habitat Restoration and Coastal Resilience",
+  },
+  {
+    id: "nfwf-five-star-urban-waters",
+    name: "Five Star and Urban Waters Restoration Grant Program",
+    agency: "National Fish & Wildlife Foundation (NFWF), with EPA and USFWS support",
+    level: "Nonprofit (federally-chartered, public-private)",
+    levelGroup: "Private",
+    summary:
+      "Community-scale restoration grants for streambank/shoreline stabilization, stormwater-runoff reduction, and wetland/riparian restoration, paired with hands-on community engagement and education.",
+    eligibility: "Local governments, nonprofits, and community groups.",
+    fundingRange: "$30,000 – $60,000 typical (avg. ~$45,000); ~$2.5M total pool, 30-40 awards/year nationally.",
+    match: "Minimum 50% match required (cash or in-kind); a larger, more diverse match is more competitive",
+    cycle: "Annual",
+    nextDeadlineDate: null,
+    isEstimate: true,
+    deadlineNote:
+      "2026 cycle closed in May 2026; awards announced ~Nov 2026. Next application window expected to open winter/spring 2027 — watch nfwf.org.",
+    status: "closed_next_cycle",
+    tags: { wq: 2, canal: 1, habitat: 2, boating: 0, resilience: 1 },
+    whyFit:
+      "Right-sized for a smaller canal-bank stabilization, urban stormwater retrofit, or community-restoration pilot — far more accessible than the multimillion-dollar NOAA/NFWF programs above, but requires a 50% match.",
+    url: "https://www.nfwf.org/media-center/press-releases/five-star-and-urban-waters-restoration-program-announces-more-1-million-grants",
+    urlLabel: "NFWF Five Star and Urban Waters Restoration Grant Program",
+  },
+  {
+    id: "batchelor-foundation",
+    name: "Environment & Marine Conservation Grants",
+    agency: "The Batchelor Foundation (private family foundation)",
+    level: "Private Foundation",
+    levelGroup: "Private",
+    summary:
+      "South Florida private foundation funding health, education, animal welfare, and environment/marine causes across Miami-Dade, Broward, Palm Beach, and Monroe counties, with a history of multimillion-dollar marine-science gifts (e.g., University of Miami's Rosenstiel School).",
+    eligibility:
+      "501(c)(3) public charities only, and — per current foundation policy — limited to organizations it has funded before (closed to first-time applicants). A city government cannot apply directly.",
+    fundingRange: "Typically $5,000 – $500,000; most awards around $25,000.",
+    match: "Not specified",
+    cycle: "Invitation/relationship-based — no open general cycle",
+    nextDeadlineDate: null,
+    isEstimate: false,
+    deadlineNote:
+      "Currently closed to new applicants — only previously funded 501(c)(3) nonprofits may apply, via an online letter of intent. Not directly accessible to city government, but relevant as a potential co-funder if Fort Lauderdale partners with an established South Florida marine-science or conservation nonprofit on a restoration project.",
+    status: "contact_agency",
+    tags: { wq: 1, canal: 1, habitat: 2, boating: 0, resilience: 0 },
+    whyFit:
+      "Not a direct city funding source today, but worth knowing about if you're structuring a joint canal/ICW habitat project with an established South Florida marine-science or conservation nonprofit partner.",
+    url: "https://www.insidephilanthropy.com/find-a-grant-places/florida-grants/batchelor-foundation",
+    urlLabel: "Batchelor Foundation profile (Inside Philanthropy)",
+  },
+  {
+    id: "boatus-grassroots",
+    name: "Grassroots Grants",
+    agency: "BoatUS Foundation for Boating Safety and Clean Water",
+    level: "Private Foundation (nonprofit)",
+    levelGroup: "Private",
+    summary:
+      "Small grants for creative, local projects promoting clean and safe boating — clean-up events, marine-debris/derelict-vessel education, boating-safety outreach, and local waterway improvement campaigns.",
+    eligibility:
+      "Typically nonprofits, marinas, yacht clubs, and community/boating organizations rather than municipal governments directly — a Marine Advisory Board or a Friends-of-the-Waterway nonprofit could apply on the City's behalf.",
+    fundingRange: "Up to $10,000 per project.",
+    match: "Not required",
+    cycle: "Annual",
+    nextDeadlineDate: null,
+    isEstimate: true,
+    deadlineNote: "Check boatus.org for the current Grassroots Grants cycle dates — modest award size but a lightweight application relative to federal/state programs.",
+    status: "contact_agency",
+    tags: { wq: 1, canal: 1, habitat: 0, boating: 3, resilience: 0 },
+    whyFit:
+      "Fast, low-barrier funding for a discrete boating-safety, clean-marina, or derelict-debris-education project — a good fit paired with a nonprofit or marine-industry partner, which Fort Lauderdale has plenty of.",
+    url: "https://boatus.org/",
+    urlLabel: "BoatUS Foundation",
+  },
+  {
+    id: "cf-broward-eco",
+    name: "ECO Broward Grants",
+    agency: "Community Foundation of Broward",
+    level: "Private Foundation (community foundation)",
+    levelGroup: "Private",
+    summary:
+      "Locally based (Fort Lauderdale) community foundation funding environmental protection and climate-resilience projects across Broward's 31 municipalities — a recent $115,000 ECO Broward round included a focus on reducing single-use plastics that pollute local waterways.",
+    eligibility:
+      "Primarily 501(c)(3) nonprofits — confirm whether a municipal or public-private partnership project qualifies directly, or apply via a nonprofit/parks-foundation partner.",
+    fundingRange: "Program-wide pool has recently totaled around $115,000 across multiple grantees; individual awards smaller.",
+    match: "Not specified",
+    cycle: "Periodic",
+    nextDeadlineDate: null,
+    isEstimate: true,
+    deadlineNote:
+      "Check cfbroward.org/grant-opportunities/eco-broward directly for the current ECO Broward cycle — this is the most locally-rooted private funder on this list and worth a direct relationship call regardless of cycle status.",
+    status: "contact_agency",
+    tags: { wq: 1, canal: 1, habitat: 1, boating: 0, resilience: 2 },
+    whyFit:
+      "A home-turf funder already prioritizing waterway-adjacent pollution (single-use plastics) and climate resilience — a natural first call for smaller local-match or pilot-project dollars, and a potential co-funder for bigger federal applications.",
+    url: "https://www.cfbroward.org/grant-opportunities/eco-broward",
+    urlLabel: "Community Foundation of Broward — ECO Broward Grants",
   },
 ];
 
@@ -259,4 +433,11 @@ const STATUS_META = {
   rolling: { label: "Rolling / always open", color: "#1a7f37" },
   closed_next_cycle: { label: "Closed — next cycle", color: "#6b7280" },
   contact_agency: { label: "Contact agency for date", color: "#a15c00" },
+};
+
+const LEVEL_META = {
+  Federal: { label: "Federal", color: "#1d4e89" },
+  State: { label: "State", color: "#0e7490" },
+  Regional: { label: "Regional", color: "#2f8f5b" },
+  Private: { label: "Private / Nonprofit", color: "#8a3ea1" },
 };

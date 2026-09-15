@@ -3,6 +3,7 @@ const CATEGORY_KEYS = ["wq", "canal", "habitat", "boating", "resilience"];
 const state = {
   priorities: { wq: 3, canal: 3, habitat: 3, boating: 3, resilience: 2 },
   activeCategory: "all",
+  activeLevel: "all",
   search: "",
   sort: "fit",
 };
@@ -99,11 +100,41 @@ function renderCategoryChips() {
   }
 }
 
+function renderLevelChips() {
+  const wrap = document.getElementById("level-chips");
+  wrap.innerHTML = "";
+  const allChip = document.createElement("button");
+  allChip.className = "chip" + (state.activeLevel === "all" ? " active" : "");
+  allChip.textContent = "All funder types";
+  allChip.addEventListener("click", () => {
+    state.activeLevel = "all";
+    render();
+  });
+  wrap.appendChild(allChip);
+
+  for (const key of Object.keys(LEVEL_META)) {
+    const meta = LEVEL_META[key];
+    const chip = document.createElement("button");
+    chip.className = "chip" + (state.activeLevel === key ? " active" : "");
+    chip.style.setProperty("--chip-color", meta.color);
+    chip.textContent = meta.label;
+    chip.addEventListener("click", () => {
+      state.activeLevel = key;
+      render();
+    });
+    wrap.appendChild(chip);
+  }
+}
+
 function filteredSortedGrants() {
   let list = GRANTS.slice();
 
   if (state.activeCategory !== "all") {
     list = list.filter((g) => (g.tags[state.activeCategory] || 0) >= 1);
+  }
+
+  if (state.activeLevel !== "all") {
+    list = list.filter((g) => g.levelGroup === state.activeLevel);
   }
 
   const q = state.search.trim().toLowerCase();
@@ -163,6 +194,8 @@ function renderCard({ grant, score }) {
     deadlineLine = `<div class="deadline">Next deadline: <strong>${deadlineText}</strong>${dayNote}</div>`;
   }
 
+  const levelMeta = LEVEL_META[grant.levelGroup] || { label: grant.levelGroup, color: "#6b7280" };
+
   const card = document.createElement("article");
   card.className = "card";
   card.innerHTML = `
@@ -176,6 +209,7 @@ function renderCard({ grant, score }) {
         <div class="agency">${grant.agency} · <span class="level">${grant.level}</span></div>
       </div>
       <span class="status-pill" style="background:${statusMeta.color}">${statusMeta.label}</span>
+      <span class="level-pill" style="border-color:${levelMeta.color};color:${levelMeta.color}">${levelMeta.label}</span>
     </div>
     <p class="summary">${grant.summary}</p>
     <div class="why-fit"><strong>Why it fits Fort Lauderdale:</strong> ${grant.whyFit}</div>
@@ -195,6 +229,7 @@ function renderCard({ grant, score }) {
 
 function render() {
   renderCategoryChips();
+  renderLevelChips();
   const results = filteredSortedGrants();
   const grid = document.getElementById("grid");
   grid.innerHTML = "";
