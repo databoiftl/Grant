@@ -109,28 +109,6 @@ const GRANTS = [
     urlLabel: "FDEP Resilient Florida Program",
   },
   {
-    id: "sfwmd-cfi",
-    name: "Cooperative Funding Initiative",
-    agency: "South Florida Water Management District (SFWMD)",
-    level: "Regional Special District",
-    levelGroup: "Regional",
-    summary:
-      "SFWMD cost-shares local water-resource projects (water quality treatment, stormwater retrofits, alternative water supply) with municipalities and counties in its district, which includes Broward County.",
-    eligibility: "Local governments, water providers, and other entities within SFWMD boundaries.",
-    fundingRange: "Varies by project and annual district budget allocation.",
-    match: "Cost-share required",
-    cycle: "Annual (varies by district region)",
-    nextDeadlineDate: null,
-    isEstimate: true,
-    deadlineNote: "Deadline not independently confirmed for the SFWMD (Broward-serving) district this cycle — contact SFWMD's Broward-area Government Affairs liaison directly for current dates before assuming a date from other water management districts.",
-    status: "contact_agency",
-    tags: { wq: 2, canal: 2, habitat: 1, boating: 0, resilience: 1 },
-    whyFit:
-      "SFWMD is Fort Lauderdale's water management district — a natural cost-share partner for canal water-quality treatment and stormwater retrofit projects feeding the New River / ICW system.",
-    url: "https://www.sfwmd.gov/doing-business-with-us/coop-funding",
-    urlLabel: "SFWMD Cooperative Funding page",
-  },
-  {
     id: "fwc-fbip",
     name: "Florida Boating Improvement Program (FBIP)",
     agency: "Florida Fish & Wildlife Conservation Commission (FWC)",
