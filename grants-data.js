@@ -10,6 +10,13 @@
  *   habitat   = Habitat creation / restoration (seagrass, mangrove, living shoreline)
  *   boating   = Boating infrastructure (ramps, docks, derelict vessels, moorings)
  *   resilience= Waterfront parks, flood resilience, shoreline hardening/adaptation
+ *
+ * wq tagging rule: only tag wq >= 1 when the program's own summary names a
+ * pollutant/nutrient/stormwater-treatment activity, or removes a pollution
+ * source directly (marine debris, derelict/leaking vessels). A program that
+ * merely funds navigation, access, or habitat restoration near water does
+ * NOT get a wq tag on that basis alone — habitat co-benefits belong under
+ * `habitat`, not `wq`. This keeps the Water Quality filter trustworthy.
  */
 const GRANTS = [
   {
@@ -28,9 +35,9 @@ const GRANTS = [
     isEstimate: true,
     deadlineNote: "2026 cycle closed Mar 30, 2026. Applications typically posted in January; next cycle due date is an estimate — confirm exact date when FIND opens the 2027 portal.",
     status: "closed_next_cycle",
-    tags: { wq: 1, canal: 3, habitat: 1, boating: 3, resilience: 1 },
+    tags: { wq: 0, canal: 3, habitat: 1, boating: 3, resilience: 1 },
     whyFit:
-      "The single best-matched funder for Fort Lauderdale: FIND exists specifically to fund ICW access, canal navigation, docks/ramps, and mooring management in exactly this district.",
+      "The single best-matched funder for Fort Lauderdale: FIND exists specifically to fund ICW access, canal navigation, docks/ramps, and mooring management in exactly this district. Not tagged Water Quality — WAP funds access/navigation infrastructure, not pollutant or stormwater treatment.",
     url: "https://www.aicw.org/grant_and_assistance_programs/waterway_assistance_programs_wap/index.php",
     urlLabel: "FIND Waterway Assistance Program overview",
   },
@@ -152,7 +159,7 @@ const GRANTS = [
     level: "State",
     levelGroup: "State",
     summary:
-      "Reimburses local governments for removing derelict vessels from public waters. FWC pays 100% of eligible removal costs. Accepted continuously, funded first-come-first-served while money is available.",
+      "Reimburses local governments for removing derelict vessels from public waters — removing a real pollution source, since abandoned/sunken vessels commonly leak fuel, oil, and sewage into surrounding waters. FWC pays 100% of eligible removal costs. Accepted continuously, funded first-come-first-served while money is available.",
     eligibility: "Local governments (cities, counties).",
     fundingRange: "100% reimbursement of eligible removal costs, no local match.",
     match: "None — full reimbursement",
@@ -206,7 +213,7 @@ const GRANTS = [
     deadlineNote:
       "2026 pre-proposals already closed; invited full proposals were due Jun 24, 2026. Next RFP typically releases in winter (roughly Nov-Jan) — watch nfwf.org for the 2027 announcement. Caveat: a large share of recent NCRF rounds (~$92.5M of $139M in 2024) came from the Bipartisan Infrastructure Law, whose 5-year appropriations window runs out at the end of FY2026 — the multi-funder structure (IRA, DoD, private) makes total cancellation unlikely, but expect the 2027 round's size/shape to be uncertain until NFWF announces it.",
     status: "closed_next_cycle",
-    tags: { wq: 1, canal: 1, habitat: 3, boating: 0, resilience: 3 },
+    tags: { wq: 0, canal: 1, habitat: 3, boating: 0, resilience: 3 },
     whyFit:
       "Excellent fit for larger habitat-creation and living-shoreline projects along the ICW and canal seawalls that double as flood-resilience infrastructure — this is the biggest dollar-per-project program on this list, and unlike the program removed from this list, it's a genuinely recurring annual cycle.",
     url: "https://www.nfwf.org/programs/national-coastal-resilience-fund/national-coastal-resilience-fund-2026-request-proposals",
@@ -228,7 +235,7 @@ const GRANTS = [
     isEstimate: true,
     deadlineNote: "No single deadline — check wildlifeflorida.org for the current sub-program RFP calendar (seagrass/manatee-focused rounds are the best fit here).",
     status: "contact_agency",
-    tags: { wq: 1, canal: 1, habitat: 3, boating: 0, resilience: 0 },
+    tags: { wq: 0, canal: 1, habitat: 3, boating: 0, resilience: 0 },
     whyFit:
       "A more accessible entry point than NFWF's mega-grants for seagrass restoration and manatee-habitat work in Fort Lauderdale's canal system.",
     url: "https://wildlifeflorida.org/conservation-grants/",
@@ -263,7 +270,7 @@ const GRANTS = [
     level: "Federal (NOAA-funded, NFWF-administered)",
     levelGroup: "Federal",
     summary:
-      "Up to $11M nationally to assess and remove marine debris in communities affected by Hurricanes Idalia, Helene, Milton, and Typhoon Mawar, including a $7.725M Gulf of America Alliance regional track spanning AL/FL/LA/MS/TX.",
+      "Up to $11M nationally to assess and remove marine debris — trash, derelict gear, and other pollution sources sitting in the water column — in communities affected by Hurricanes Idalia, Helene, Milton, and Typhoon Mawar, including a $7.725M Gulf of America Alliance regional track spanning AL/FL/LA/MS/TX.",
     eligibility: "Local governments in eligible hurricane-impacted states/counties; Florida track appears limited to local governments (not private citizens or corporations).",
     fundingRange: "Up to $11M nationally; $7.725M in the 5-state Gulf regional competitive track.",
     match: "Not required, but cost-share is scored favorably",
@@ -286,7 +293,7 @@ const GRANTS = [
     level: "Federal",
     levelGroup: "Federal",
     summary:
-      "NOAA's baseline, recurring marine-debris funding line — separate from the hurricane-specific track above — covering removal, prevention, and assessment projects, typically posted as annual Federal Funding Opportunities (FFOs) directly through NOAA or partner administrators like NFWF.",
+      "NOAA's baseline, recurring marine-debris funding line — separate from the hurricane-specific track above — covering removal of trash/derelict gear (a direct pollution source), prevention, and assessment projects, typically posted as annual Federal Funding Opportunities (FFOs) directly through NOAA or partner administrators like NFWF.",
     eligibility: "State/local governments, tribes, and NGOs — exact eligibility varies by the specific FFO.",
     fundingRange: "Varies by year; recent national removal/prevention rounds have totaled multiple millions of dollars.",
     match: "Varies by FFO",
@@ -367,7 +374,7 @@ const GRANTS = [
     deadlineNote:
       "FUNDING RISK: the Administration's budget request excluded CAP funding in both FY2025 and FY2026; Congress partially backfilled FY2025 with $100M via the American Relief Act (mostly flood/storm-damage projects), and USACE is currently operating under a continuing resolution through Jan 30, 2026. The authorities remain law and a City can still submit a letter of interest to get in the queue, but treat new-project funding as genuinely uncertain right now — call the Jacksonville District first to ask whether they're accepting new CAP study starts before investing staff time.",
     status: "contact_agency",
-    tags: { wq: 1, canal: 3, habitat: 2, boating: 0, resilience: 1 },
+    tags: { wq: 0, canal: 3, habitat: 2, boating: 0, resilience: 1 },
     whyFit:
       "Purpose-built for exactly this kind of work — using dredged canal material to build habitat, restoring aquatic ecosystems degraded by navigation dredging, or fixing environmental side-effects of an existing Corps project on the ICW, with the Corps designing/building it as cost-share partner — but currently the highest funding-risk program on this list; confirm active appropriations before relying on it.",
     url: "https://www.saj.usace.army.mil/Missions/Civil-Works/",
@@ -435,9 +442,9 @@ const GRANTS = [
     deadlineNote:
       "FEMA moved to end BRIC entirely in April 2025, then resumed it; the FY2024-25 NOFO (published Mar 25, 2026) closed to subapplications Jul 23, 2026 and is now in FEMA review. Given the program's on-again/off-again history, confirm directly with FL Division of Emergency Management whether/when a next cycle will open before committing planning time.",
     status: "contact_agency",
-    tags: { wq: 1, canal: 1, habitat: 0, boating: 0, resilience: 3 },
+    tags: { wq: 0, canal: 1, habitat: 0, boating: 0, resilience: 3 },
     whyFit:
-      "The standard federal vehicle for hardening canal seawalls, upgrading tidal backflow/stormwater infrastructure, and other flood-mitigation capital work — highest resilience-category fit on this list, but the program's funding stability has been genuinely uncertain since 2025.",
+      "The standard federal vehicle for hardening canal seawalls, upgrading tidal backflow/stormwater infrastructure, and other flood-mitigation capital work — highest resilience-category fit on this list, but the program's funding stability has been genuinely uncertain since 2025. Not tagged Water Quality — BRIC funds flood-risk reduction, not pollutant/nutrient treatment.",
     url: "https://www.fema.gov/grants/mitigation/learn/building-resilient-infrastructure-communities",
     urlLabel: "FEMA — Building Resilient Infrastructure and Communities (BRIC)",
   },
@@ -458,7 +465,7 @@ const GRANTS = [
     deadlineNote:
       "Electronically submitted applications from invited applicants are due 09/30/2026, 11:59 PM ET — that's only ~2 weeks out, and since an invitation is required first, this specific window may already be effectively closed to a first-time applicant; treat FY2026 as a relationship-building contact and target the FY2027 cycle for an actual application. Outlook note: the Administration's FY2027 budget request cuts FWS discretionary funding ~20% below the FY2026 enacted level, so confirm the Coastal Program's funding specifically with your local office rather than assuming continuity.",
     status: "contact_agency",
-    tags: { wq: 1, canal: 1, habitat: 3, boating: 0, resilience: 1 },
+    tags: { wq: 0, canal: 1, habitat: 3, boating: 0, resilience: 1 },
     whyFit:
       "Direct USFWS partnership channel for living-shoreline and coastal-wetland restoration along the ICW — smaller and more relationship-driven than NFWF's big-dollar programs, which can make it a faster path for a well-scoped habitat project, funding outlook permitting.",
     url: "https://www.fws.gov/program/coastal",
