@@ -65,6 +65,31 @@ const GRANTS = [
     urlLabel: "FDEP Water Quality Improvement Grant Program",
   },
   {
+    id: "fdep-innovative-tech-hab",
+    name: "Innovative Technology Grants for Harmful Algal Blooms",
+    agency: "Florida Dept. of Environmental Protection (FDEP)",
+    level: "State",
+    levelGroup: "State",
+    summary:
+      "Funds evaluation and deployment of innovative technologies and short-term solutions to prevent, monitor, clean up, or mitigate harmful algal blooms (HABs) and blue-green algae, with emphasis on projects that reduce the nutrient loading that drives blooms. Since 2019 the state has invested $65M+ testing 65+ technologies statewide; a recent statewide round distributed $10-13.6M across 14-16 projects.",
+    eligibility:
+      "Local governmental entities (counties, municipalities, school districts, special districts, public universities/colleges) and nonprofit organizations.",
+    fundingRange:
+      "Individual awards have varied widely by project scope — recent examples include $600K to a university research partner and $3.2M to a multi-partner team; no single confirmed per-project cap found.",
+    match: "Not confirmed in public solicitation materials — check the current solicitation document directly",
+    cycle: "Periodic solicitations, historically grouped with DEP's other Water Quality & Supply Grants",
+    nextDeadlineDate: null,
+    isEstimate: true,
+    deadlineNote:
+      "Exact FY2026-27 window not independently confirmed. This program is grouped under DEP's Water Quality & Supply Grants umbrella on the Water Quality Dashboard, which for other programs in that umbrella ran Jul 1 – Sep 1, 2026 — it likely shares a similar window, but confirm directly at the link below before assuming a date.",
+    status: "contact_agency",
+    tags: { wq: 3, canal: 2, habitat: 0, boating: 0, resilience: 0 },
+    whyFit:
+      "Directly relevant if Fort Lauderdale's canals experience blue-green algae or nutrient-driven algal blooms, which are a known risk in nutrient-rich urban canal systems — this is DEP's dedicated vehicle for piloting new treatment/monitoring technology rather than conventional infrastructure, and a good complement to the broader Water Quality Improvement Grant above.",
+    url: "https://protectingfloridatogether.gov/innovative-technologies-for-HABs",
+    urlLabel: "FDEP Innovative Technologies for Harmful Algal Blooms",
+  },
+  {
     id: "fdep-319-swag",
     name: "Nonpoint Source Management Grants (Section 319 / SWAG)",
     agency: "Florida DEP, Nonpoint Source Management Program (EPA Clean Water Act §319 + state SWAG match)",
