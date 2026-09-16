@@ -76,18 +76,66 @@ const GRANTS = [
       "Local governmental entities (counties, municipalities, school districts, special districts, public universities/colleges) and nonprofit organizations.",
     fundingRange:
       "Individual awards have varied widely by project scope — recent examples include $600K to a university research partner and $3.2M to a multi-partner team; no single confirmed per-project cap found.",
-    match: "Not confirmed in public solicitation materials — check the current solicitation document directly",
-    cycle: "Periodic solicitations, historically grouped with DEP's other Water Quality & Supply Grants",
-    nextDeadlineDate: null,
-    isEstimate: true,
+    match: "No match required",
+    cycle: "Annual, grouped with DEP's other Water Quality & Supply Grants",
+    nextDeadlineDate: "2027-09-01",
+    isEstimate: false,
     deadlineNote:
-      "Exact FY2026-27 window not independently confirmed. This program is grouped under DEP's Water Quality & Supply Grants umbrella on the Water Quality Dashboard, which for other programs in that umbrella ran Jul 1 – Sep 1, 2026 — it likely shares a similar window, but confirm directly at the link below before assuming a date.",
-    status: "contact_agency",
+      "Confirmed: grouped with DEP's broader Water Quality & Supply Grants window (Jul 1 – Sep 1). The FY2026-27 window closed Sep 1, 2026; next window expected to open ~Jul 1, 2027 and close Sep 1, 2027.",
+    status: "closed_next_cycle",
     tags: { wq: 3, canal: 2, habitat: 0, boating: 0, resilience: 0 },
     whyFit:
       "Directly relevant if Fort Lauderdale's canals experience blue-green algae or nutrient-driven algal blooms, which are a known risk in nutrient-rich urban canal systems — this is DEP's dedicated vehicle for piloting new treatment/monitoring technology rather than conventional infrastructure, and a good complement to the broader Water Quality Improvement Grant above.",
     url: "https://protectingfloridatogether.gov/innovative-technologies-for-HABs",
     urlLabel: "FDEP Innovative Technologies for Harmful Algal Blooms",
+  },
+  {
+    id: "noaa-pcmhab",
+    name: "Prevention, Control, and Mitigation of Harmful Algal Blooms (PCMHAB) Program",
+    agency: "NOAA, National Centers for Coastal Ocean Science (NCCOS)",
+    level: "Federal",
+    levelGroup: "Federal",
+    summary:
+      "NOAA's dedicated federal funding line for developing and field-transitioning technologies and strategies to prevent, control, or mitigate harmful algal blooms (HABs) — the direct federal counterpart to FDEP's state HAB technology grant, with emphasis on getting promising technologies into real-world use by end users like local governments.",
+    eligibility:
+      "U.S. institutions of higher education, nonprofits, state and local governments, tribal government entities, U.S. Territories/Affiliated Pacific Islands institutions, and for-profit/commercial organizations.",
+    fundingRange:
+      "Part of a national HAB/hypoxia research and monitoring pool that has exceeded $20M in recent combined award rounds; individual project size varies by scope.",
+    match: "No match required (cash/in-kind match earns bonus points in review, but isn't mandatory)",
+    cycle: "Annual NOFO via NCCOS / grants.gov",
+    nextDeadlineDate: null,
+    isEstimate: true,
+    deadlineNote:
+      "FY2026 cycle: letters of intent were due Apr 14, 2026, full applications due Jul 9, 2026 (both closed). Next cycle expected ~spring/summer 2027 — watch coastalscience.noaa.gov/about/funding-opportunities, or contact NOAA's ECOHAB Coordinator Felix Martinez (Felix.Martinez@noaa.gov, 301-237-5414).",
+    status: "closed_next_cycle",
+    tags: { wq: 3, canal: 2, habitat: 0, boating: 0, resilience: 0 },
+    whyFit:
+      "The federal-level twin to FDEP's Innovative Technology Grants for HABs — worth pursuing alongside or instead of the state program if Fort Lauderdale is piloting a specific HAB detection, prevention, or control technology in its canals; this program explicitly prioritizes field deployment with real end users like municipalities.",
+    url: "https://coastalscience.noaa.gov/science-areas/habs/pcmhab/",
+    urlLabel: "NOAA NCCOS — Prevention, Control, and Mitigation of Harmful Algal Blooms",
+  },
+  {
+    id: "epa-south-florida-program",
+    name: "South Florida Program (SFP)",
+    agency: "U.S. EPA, Region 4",
+    level: "Federal",
+    levelGroup: "Federal",
+    summary:
+      "EPA grant specifically carved out for South Florida (Broward County is within scope), funding innovative stormwater pollution-reduction demonstration projects — innovative approaches, methods, or techniques to prevent, treat, and manage pollution before it reaches local waterbodies.",
+    eligibility:
+      "States, local governments, U.S. territories, tribes, public/private universities and colleges, hospitals, laboratories, and public/private nonprofit institutions.",
+    fundingRange: "$400,000 – $1,000,000 per project in the most recent announcement ($8.5M total pool); projects can run up to 7 years.",
+    match: "Not confirmed as mandatory in search results — check the current NOFO",
+    cycle: "Periodic NOFOs via grants.gov",
+    nextDeadlineDate: null,
+    isEstimate: true,
+    deadlineNote: "Most recent NOFO closed Mar 16, 2026. Next opportunity not yet announced — monitor epa.gov/southflorida and grants.gov.",
+    status: "closed_next_cycle",
+    tags: { wq: 3, canal: 2, habitat: 1, boating: 0, resilience: 1 },
+    whyFit:
+      "One of the most specifically-targeted programs on this whole list — it exists because of South Florida's particular water-quality challenges and explicitly funds piloting innovative/novel stormwater treatment approaches rather than conventional infrastructure, a strong match for testing new canal-adjacent stormwater technology.",
+    url: "https://www.epa.gov/southflorida/south-florida-program-funding-sfp-overview",
+    urlLabel: "EPA South Florida Program (SFP) Funding",
   },
   {
     id: "fdep-319-swag",
