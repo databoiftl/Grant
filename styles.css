@@ -377,6 +377,20 @@ footer {
   ry: 4;
 }
 
+.gantt-row {
+  cursor: pointer;
+}
+
+.gantt-row:hover .gantt-row-label,
+.gantt-row:focus-visible .gantt-row-label {
+  text-decoration: underline;
+  fill: var(--teal);
+}
+
+.gantt-row:hover .gantt-row-hit {
+  fill: rgba(14, 116, 144, 0.06);
+}
+
 .gantt-legend {
   display: flex;
   flex-wrap: wrap;
@@ -414,6 +428,14 @@ footer {
   padding: 0.6rem 0.75rem;
   border: 1px solid var(--border);
   border-radius: 8px;
+  cursor: pointer;
+}
+
+.period-row:hover,
+.period-row:focus-visible {
+  border-color: var(--teal);
+  background: #f0fafa;
+  outline: none;
 }
 
 .period-row .period-name {
@@ -445,4 +467,64 @@ footer {
   border-radius: 999px;
   margin-left: 0.4rem;
   vertical-align: middle;
+}
+
+/* --- Grant detail modal --- */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 57, 72, 0.55);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 4vh 1rem;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.modal-overlay[hidden] {
+  display: none;
+}
+
+.modal-panel {
+  background: var(--card-bg);
+  border-radius: 12px;
+  max-width: 640px;
+  width: 100%;
+  padding: 1.5rem 1.5rem 1.75rem;
+  position: relative;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+.modal-panel .card-top,
+.modal-panel .summary,
+.modal-panel .why-fit,
+.modal-panel .meta-grid,
+.modal-panel .deadline,
+.modal-panel .deadline-note,
+.modal-panel .tags,
+.modal-panel .source-link {
+  margin-bottom: 0.7rem;
+}
+
+.modal-panel > div > *:first-child {
+  margin-top: 0;
+}
+
+.modal-close {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.25rem;
+}
+
+.modal-close:hover {
+  color: var(--navy);
 }

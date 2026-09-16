@@ -117,7 +117,7 @@ function filteredSortedGrants() {
   return list;
 }
 
-function renderCard(grant) {
+function grantDetailHtml(grant) {
   const liveStatus = computeLiveStatus(grant);
   const statusMeta = STATUS_META[liveStatus];
   const deadlineText = formatDeadline(grant);
@@ -148,9 +148,7 @@ function renderCard(grant) {
 
   const levelMeta = LEVEL_META[grant.levelGroup] || { label: grant.levelGroup, color: "#6b7280" };
 
-  const card = document.createElement("article");
-  card.className = "card";
-  card.innerHTML = `
+  return `
     <div class="card-top">
       <div class="card-headline">
         <h3>${grant.name}</h3>
@@ -172,7 +170,26 @@ function renderCard(grant) {
     <div class="deadline-note">${grant.deadlineNote}</div>
     <div class="tags">${tagsHtml}</div>
   `;
+}
+
+function renderCard(grant) {
+  const card = document.createElement("article");
+  card.className = "card";
+  card.innerHTML = grantDetailHtml(grant);
   return card;
+}
+
+function openGrantModal(grantId) {
+  const grant = GRANTS.find((g) => g.id === grantId);
+  if (!grant) return;
+  document.getElementById("modal-body").innerHTML = grantDetailHtml(grant);
+  document.getElementById("grant-modal").hidden = false;
+  document.body.style.overflow = "hidden";
+}
+
+function closeGrantModal() {
+  document.getElementById("grant-modal").hidden = true;
+  document.body.style.overflow = "";
 }
 
 function render() {
@@ -246,6 +263,8 @@ function renderGantt() {
   rows.forEach((grant, i) => {
     const y = headerH + i * rowH;
     const midY = y + rowH / 2;
+    svg += `<g class="gantt-row" data-grant-id="${escapeXml(grant.id)}">`;
+    svg += `<rect class="gantt-row-hit" x="0" y="${y}" width="${totalW - rightPad}" height="${rowH}" fill="transparent" />`;
     svg += `<text class="gantt-row-label" x="4" y="${(midY + 4).toFixed(1)}">${escapeXml(truncate(grant.name, 38))}</text>`;
     svg += `<line class="gantt-gridline" x1="0" y1="${y + rowH}" x2="${totalW - rightPad}" y2="${y + rowH}" />`;
 
@@ -275,6 +294,7 @@ function renderGantt() {
     } else {
       svg += `<text class="gantt-varies-label" x="${labelW + 8}" y="${(midY + 4).toFixed(1)}">Varies — no fixed window</text>`;
     }
+    svg += `</g>`;
   });
 
   svg += `</svg>`;
@@ -283,7 +303,12 @@ function renderGantt() {
   const legendItems = Object.entries(OPEN_TYPE_META)
     .map(([, meta]) => `<span class="gantt-legend-item"><span class="gantt-legend-swatch" style="background:${meta.color}"></span>${meta.label}</span>`)
     .join("");
-  container.innerHTML += `<div class="gantt-legend">${legendItems}<span class="gantt-legend-item"><span class="gantt-legend-swatch" style="background:#d1394a"></span>Today</span></div>`;
+  container.innerHTML += `<div class="gantt-legend">${legendItems}<span class="gantt-legend-item"><span class="gantt-legend-swatch" style="background:#d1394a"></span>Today</span></div><p class="hint" style="margin-top:0.5rem">Click any program's row to see its full details.</p>`;
+
+  container.querySelector(".gantt-svg").addEventListener("click", (e) => {
+    const row = e.target.closest("[data-grant-id]");
+    if (row) openGrantModal(row.dataset.grantId);
+  });
 }
 
 function renderPeriodList() {
@@ -297,6 +322,8 @@ function renderPeriodList() {
     const meta = OPEN_TYPE_META[op.type];
     const row = document.createElement("div");
     row.className = "period-row";
+    row.tabIndex = 0;
+    row.setAttribute("role", "button");
     row.innerHTML = `
       <div>
         <span class="period-name">${grant.name}</span>
@@ -305,6 +332,13 @@ function renderPeriodList() {
       </div>
       <div class="period-value${op.approx ? " approx" : ""}">${op.label}</div>
     `;
+    row.addEventListener("click", () => openGrantModal(grant.id));
+    row.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openGrantModal(grant.id);
+      }
+    });
     container.appendChild(row);
   }
 }
@@ -326,8 +360,19 @@ function initTabs() {
   });
 }
 
+function initModal() {
+  document.getElementById("modal-close").addEventListener("click", closeGrantModal);
+  document.getElementById("grant-modal").addEventListener("click", (e) => {
+    if (e.target.id === "grant-modal") closeGrantModal();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !document.getElementById("grant-modal").hidden) closeGrantModal();
+  });
+}
+
 function init() {
   initTabs();
+  initModal();
 
   document.getElementById("search").addEventListener("input", (e) => {
     state.search = e.target.value;
