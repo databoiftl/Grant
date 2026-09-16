@@ -292,6 +292,7 @@ main {
 }
 
 .source-link {
+  display: inline-block;
   align-self: flex-start;
   font-size: 0.82rem;
   font-weight: 700;
@@ -300,6 +301,7 @@ main {
   text-decoration: none;
   padding: 0.4rem 0.75rem;
   border-radius: 6px;
+  margin-bottom: 0.6rem;
 }
 
 .source-link:hover {
