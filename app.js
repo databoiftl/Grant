@@ -1,24 +1,11 @@
 const CATEGORY_KEYS = ["wq", "canal", "habitat", "boating", "resilience"];
 
 const state = {
-  priorities: { wq: 3, canal: 3, habitat: 3, boating: 3, resilience: 2 },
   activeCategory: "all",
   activeLevel: "all",
   search: "",
-  sort: "fit",
+  sort: "deadline",
 };
-
-function fitScore(grant, priorities) {
-  let num = 0;
-  let den = 0;
-  for (const key of CATEGORY_KEYS) {
-    const p = priorities[key];
-    num += (grant.tags[key] || 0) * p;
-    den += 3 * p;
-  }
-  if (den === 0) return 0;
-  return Math.round((num / den) * 100);
-}
 
 function daysUntil(isoDate) {
   if (!isoDate) return null;
@@ -42,30 +29,6 @@ function computeLiveStatus(grant) {
   if (days < 0) return "closed_next_cycle";
   if (days <= 30) return "opening_soon";
   return grant.status;
-}
-
-function renderPriorityControls() {
-  const wrap = document.getElementById("priority-controls");
-  wrap.innerHTML = "";
-  for (const key of CATEGORY_KEYS) {
-    const meta = CATEGORY_META[key];
-    const row = document.createElement("div");
-    row.className = "priority-row";
-    row.innerHTML = `
-      <label for="pri-${key}">
-        <span class="swatch" style="background:${meta.color}"></span>
-        ${meta.label}
-        <span class="priority-value" id="pri-${key}-val">${state.priorities[key]}</span>
-      </label>
-      <input type="range" id="pri-${key}" min="0" max="3" step="1" value="${state.priorities[key]}" />
-    `;
-    wrap.appendChild(row);
-    row.querySelector("input").addEventListener("input", (e) => {
-      state.priorities[key] = Number(e.target.value);
-      document.getElementById(`pri-${key}-val`).textContent = e.target.value;
-      render();
-    });
-  }
 }
 
 function renderCategoryChips() {
@@ -138,27 +101,23 @@ function filteredSortedGrants() {
     );
   }
 
-  list = list.map((g) => ({ grant: g, score: fitScore(g, state.priorities) }));
-
-  if (state.sort === "fit") {
-    list.sort((a, b) => b.score - a.score);
-  } else if (state.sort === "deadline") {
+  if (state.sort === "deadline") {
     list.sort((a, b) => {
-      const da = daysUntil(a.grant.nextDeadlineDate);
-      const db = daysUntil(b.grant.nextDeadlineDate);
+      const da = daysUntil(a.nextDeadlineDate);
+      const db = daysUntil(b.nextDeadlineDate);
       if (da === null && db === null) return 0;
       if (da === null) return 1;
       if (db === null) return -1;
       return da - db;
     });
   } else if (state.sort === "name") {
-    list.sort((a, b) => a.grant.name.localeCompare(b.grant.name));
+    list.sort((a, b) => a.name.localeCompare(b.name));
   }
 
   return list;
 }
 
-function renderCard({ grant }) {
+function renderCard(grant) {
   const liveStatus = computeLiveStatus(grant);
   const statusMeta = STATUS_META[liveStatus];
   const deadlineText = formatDeadline(grant);
@@ -368,7 +327,6 @@ function initTabs() {
 }
 
 function init() {
-  renderPriorityControls();
   initTabs();
 
   document.getElementById("search").addEventListener("input", (e) => {
