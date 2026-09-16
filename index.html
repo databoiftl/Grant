@@ -24,25 +24,51 @@
 </header>
 
 <main>
-  <section class="panel">
-    <h2>Your priorities</h2>
-    <p class="hint">Slide each category from 0 (not a priority right now) to 3 (top priority) — the fit score on every card updates live.</p>
-    <div id="priority-controls"></div>
+  <nav class="tabs" id="tab-nav">
+    <button class="tab-btn active" data-tab="grants">Grant Finder</button>
+    <button class="tab-btn" data-tab="timeline">Open-Period Timeline</button>
+  </nav>
+
+  <section id="tab-panel-grants" class="tab-panel">
+    <section class="panel">
+      <h2>Your priorities</h2>
+      <p class="hint">Slide each category from 0 (not a priority right now) to 3 (top priority) — the fit score on every card updates live.</p>
+      <div id="priority-controls"></div>
+    </section>
+
+    <section class="panel">
+      <div class="controls-row">
+        <input id="search" type="search" placeholder="Search program name, agency, or keyword…" />
+        <select id="sort">
+          <option value="fit">Sort: Best fit first</option>
+          <option value="deadline">Sort: Deadline soonest</option>
+          <option value="name">Sort: Program name A–Z</option>
+        </select>
+      </div>
+      <div id="category-chips"></div>
+      <div id="level-chips"></div>
+      <p id="result-count"></p>
+      <div id="grid"></div>
+    </section>
   </section>
 
-  <section class="panel">
-    <div class="controls-row">
-      <input id="search" type="search" placeholder="Search program name, agency, or keyword…" />
-      <select id="sort">
-        <option value="fit">Sort: Best fit first</option>
-        <option value="deadline">Sort: Deadline soonest</option>
-        <option value="name">Sort: Program name A–Z</option>
-      </select>
-    </div>
-    <div id="category-chips"></div>
-    <div id="level-chips"></div>
-    <p id="result-count"></p>
-    <div id="grid"></div>
+  <section id="tab-panel-timeline" class="tab-panel" hidden>
+    <section class="panel">
+      <h2>Historical / typical open periods</h2>
+      <p class="hint">
+        When each program has historically opened and closed, compiled from the same source
+        research as the grant cards. Many windows shift year to year or aren't published in
+        advance — anything marked "approx." is inferred from a past cycle's pattern, not a
+        confirmed recurring date. Always verify the live date on the program's page before
+        planning around it.
+      </p>
+      <div id="gantt-wrap"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Open period by program</h2>
+      <div id="period-list"></div>
+    </section>
   </section>
 </main>
 

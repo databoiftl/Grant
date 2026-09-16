@@ -232,8 +232,144 @@ function render() {
   }
 }
 
+const MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const MONTH_START_DOY = [1, 32, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335];
+
+function dayOfYear(month, day) {
+  return MONTH_START_DOY[month - 1] + (day - 1);
+}
+
+function escapeXml(str) {
+  return String(str).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&apos;" }[c]));
+}
+
+function truncate(str, max) {
+  return str.length > max ? str.slice(0, max - 1) + "…" : str;
+}
+
+function openPeriodSortValue(op) {
+  if (op.type === "window" && op.startMonth != null) return dayOfYear(op.startMonth, op.startDay);
+  if (op.type === "onetime") return dayOfYear(op.endMonth, op.endDay);
+  if (op.type === "point") return dayOfYear(op.month, op.day);
+  if (op.type === "rolling") return 400;
+  return 500; // varies
+}
+
+function renderGantt() {
+  const container = document.getElementById("gantt-wrap");
+  const rows = GRANTS.slice().sort(
+    (a, b) => openPeriodSortValue(a.openPeriod) - openPeriodSortValue(b.openPeriod) || a.name.localeCompare(b.name)
+  );
+
+  const rowH = 26;
+  const headerH = 36;
+  const labelW = 270;
+  const rightPad = 16;
+  const totalW = 1040;
+  const chartW = totalW - labelW - rightPad;
+  const totalH = headerH + rows.length * rowH + 6;
+
+  let svg = `<svg class="gantt-svg" viewBox="0 0 ${totalW} ${totalH}" xmlns="http://www.w3.org/2000/svg">`;
+
+  MONTH_START_DOY.forEach((doy, i) => {
+    const x = labelW + (doy / 365) * chartW;
+    svg += `<line class="gantt-gridline" x1="${x.toFixed(1)}" y1="${headerH - 6}" x2="${x.toFixed(1)}" y2="${totalH}" />`;
+    svg += `<text class="gantt-month-label" x="${(x + 3).toFixed(1)}" y="${headerH - 14}">${MONTH_NAMES[i]}</text>`;
+  });
+  svg += `<line class="gantt-gridline" x1="${totalW - rightPad}" y1="${headerH - 6}" x2="${totalW - rightPad}" y2="${totalH}" />`;
+
+  const today = new Date();
+  const todayDoy = dayOfYear(today.getMonth() + 1, today.getDate());
+  const todayX = labelW + (todayDoy / 365) * chartW;
+  svg += `<text class="gantt-today-label" x="${(todayX + 3).toFixed(1)}" y="${headerH - 22}">Today</text>`;
+  svg += `<line class="gantt-today-line" x1="${todayX.toFixed(1)}" y1="${headerH - 6}" x2="${todayX.toFixed(1)}" y2="${totalH}" />`;
+
+  rows.forEach((grant, i) => {
+    const y = headerH + i * rowH;
+    const midY = y + rowH / 2;
+    svg += `<text class="gantt-row-label" x="4" y="${(midY + 4).toFixed(1)}">${escapeXml(truncate(grant.name, 38))}</text>`;
+    svg += `<line class="gantt-gridline" x1="0" y1="${y + rowH}" x2="${totalW - rightPad}" y2="${y + rowH}" />`;
+
+    const op = grant.openPeriod;
+    const meta = OPEN_TYPE_META[op.type];
+
+    if ((op.type === "window" || op.type === "onetime") && op.startMonth != null) {
+      const sd = dayOfYear(op.startMonth, op.startDay);
+      const ed = dayOfYear(op.endMonth, op.endDay);
+      const x1 = labelW + (sd / 365) * chartW;
+      const x2 = labelW + (ed / 365) * chartW;
+      const w = Math.max(x2 - x1, 5);
+      const dashAttr = op.approx ? ` stroke-dasharray="3 2"` : "";
+      svg += `<rect class="gantt-bar" x="${x1.toFixed(1)}" y="${y + 5}" width="${w.toFixed(1)}" height="${rowH - 10}" fill="${meta.color}" fill-opacity="${op.approx ? 0.5 : 0.85}" stroke="${meta.color}"${dashAttr} />`;
+    } else if (op.type === "onetime") {
+      const d = dayOfYear(op.endMonth, op.endDay);
+      const x = labelW + (d / 365) * chartW;
+      const s = 7;
+      svg += `<polygon points="${x.toFixed(1)},${(midY - s).toFixed(1)} ${(x + s).toFixed(1)},${midY.toFixed(1)} ${x.toFixed(1)},${(midY + s).toFixed(1)} ${(x - s).toFixed(1)},${midY.toFixed(1)}" fill="${meta.color}" stroke="#fff" stroke-width="1" />`;
+    } else if (op.type === "point") {
+      const d = dayOfYear(op.month, op.day);
+      const x = labelW + (d / 365) * chartW;
+      const s = 6;
+      svg += `<polygon points="${x.toFixed(1)},${(midY - s).toFixed(1)} ${(x + s).toFixed(1)},${midY.toFixed(1)} ${x.toFixed(1)},${(midY + s).toFixed(1)} ${(x - s).toFixed(1)},${midY.toFixed(1)}" fill="${meta.color}" />`;
+    } else if (op.type === "rolling") {
+      svg += `<rect x="${labelW}" y="${y + 7}" width="${chartW}" height="${rowH - 14}" fill="${meta.color}" fill-opacity="0.18" />`;
+    } else {
+      svg += `<text class="gantt-varies-label" x="${labelW + 8}" y="${(midY + 4).toFixed(1)}">Varies — no fixed window</text>`;
+    }
+  });
+
+  svg += `</svg>`;
+  container.innerHTML = svg;
+
+  const legendItems = Object.entries(OPEN_TYPE_META)
+    .map(([, meta]) => `<span class="gantt-legend-item"><span class="gantt-legend-swatch" style="background:${meta.color}"></span>${meta.label}</span>`)
+    .join("");
+  container.innerHTML += `<div class="gantt-legend">${legendItems}<span class="gantt-legend-item"><span class="gantt-legend-swatch" style="background:#d1394a"></span>Today</span></div>`;
+}
+
+function renderPeriodList() {
+  const container = document.getElementById("period-list");
+  container.innerHTML = "";
+  const rows = GRANTS.slice().sort(
+    (a, b) => openPeriodSortValue(a.openPeriod) - openPeriodSortValue(b.openPeriod) || a.name.localeCompare(b.name)
+  );
+  for (const grant of rows) {
+    const op = grant.openPeriod;
+    const meta = OPEN_TYPE_META[op.type];
+    const row = document.createElement("div");
+    row.className = "period-row";
+    row.innerHTML = `
+      <div>
+        <span class="period-name">${grant.name}</span>
+        <span class="period-type-badge" style="background:${meta.color}22;color:${meta.color}">${meta.label}</span>
+        <div class="period-agency">${grant.agency}</div>
+      </div>
+      <div class="period-value${op.approx ? " approx" : ""}">${op.label}</div>
+    `;
+    container.appendChild(row);
+  }
+}
+
+function initTabs() {
+  const buttons = document.querySelectorAll(".tab-btn");
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      buttons.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      const tab = btn.dataset.tab;
+      document.getElementById("tab-panel-grants").hidden = tab !== "grants";
+      document.getElementById("tab-panel-timeline").hidden = tab !== "timeline";
+      if (tab === "timeline") {
+        renderGantt();
+        renderPeriodList();
+      }
+    });
+  });
+}
+
 function init() {
   renderPriorityControls();
+  initTabs();
 
   document.getElementById("search").addEventListener("input", (e) => {
     state.search = e.target.value;
