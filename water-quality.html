@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Fort Lauderdale Water Quality Monitor</title>
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="wq.css" />
+</head>
+<body>
+<header class="hero">
+  <div class="hero-inner">
+    <nav class="site-nav">
+      <a href="index.html">Grant Finder</a>
+      <a href="water-quality.html" class="active">Water Quality Monitor</a>
+    </nav>
+    <div class="eyebrow">Office of the Chief Waterways Officer · City of Fort Lauderdale, FL</div>
+    <h1>Waterways Water Quality Monitor</h1>
+    <p>
+      False-color and spectral-index analysis of free Sentinel-2 satellite imagery (10 m,
+      revisits every 2–5 days) over Fort Lauderdale's canals, rivers, Intracoastal Waterway,
+      Port Everglades, and nearshore Atlantic. Each cloud-free pass is screened for
+      chlorophyll (algae), turbidity (suspended sediment), and floating algae/sargassum,
+      then rolled up into a health rating per waterway. Use it to spot where and when
+      conditions change — then send a boat to sample.
+    </p>
+  </div>
+</header>
+
+<main>
+  <nav class="tabs" id="tab-nav">
+    <button class="tab-btn active" data-tab="overview">Health Overview</button>
+    <button class="tab-btn" data-tab="viewer">Satellite Viewer</button>
+    <button class="tab-btn" data-tab="trends">Trends</button>
+    <button class="tab-btn" data-tab="method">Methodology</button>
+  </nav>
+
+  <section id="tab-panel-overview" class="tab-panel">
+    <div id="stat-row" class="stat-row"></div>
+    <section class="panel">
+      <h2>Waterway health by zone</h2>
+      <p class="hint">
+        Latest usable satellite reading for each zone, with the change against that zone's
+        own 12-month median. Click a card for the full history. Confidence drops in narrow,
+        dark, tree-lined canals where 10–20 m pixels mix water with banks and docks.
+      </p>
+      <div id="zone-grid"></div>
+    </section>
+  </section>
+
+  <section id="tab-panel-viewer" class="tab-panel" hidden>
+    <section class="panel">
+      <div class="viewer-controls">
+        <label class="ctl">
+          <span class="meta-label">Image date</span>
+          <select id="date-select"></select>
+        </label>
+        <label class="ctl-check">
+          <input type="checkbox" id="zones-toggle" checked /> Show zone outlines
+        </label>
+      </div>
+      <div id="layer-chips" class="layer-chips"></div>
+      <p id="layer-desc" class="hint"></p>
+      <div class="viewer-layout">
+        <div id="map-frame" class="map-frame">
+          <div id="map-inner" class="map-inner">
+            <img id="map-img" alt="Sentinel-2 image of Fort Lauderdale" draggable="false" />
+            <svg id="map-zones" class="map-zones"></svg>
+          </div>
+          <div class="zoom-ctl">
+            <button id="zoom-in" aria-label="Zoom in">+</button>
+            <button id="zoom-out" aria-label="Zoom out">&minus;</button>
+            <button id="zoom-reset" aria-label="Reset view">&#8634;</button>
+          </div>
+          <div id="map-tip" class="map-tip" hidden></div>
+        </div>
+        <aside class="viewer-side">
+          <div id="legend"></div>
+          <div id="scene-zones"></div>
+        </aside>
+      </div>
+    </section>
+  </section>
+
+  <section id="tab-panel-trends" class="tab-panel" hidden>
+    <section class="panel">
+      <div class="viewer-controls">
+        <label class="ctl">
+          <span class="meta-label">Metric</span>
+          <select id="metric-select">
+            <option value="score">Health score (0–100)</option>
+            <option value="ndci">Chlorophyll index (NDCI)</option>
+            <option value="turb">Turbidity (FNU)</option>
+            <option value="fai_pct">Floating algae (% of water)</option>
+          </select>
+        </label>
+        <label class="ctl">
+          <span class="meta-label">Highlight zone</span>
+          <select id="zone-select"></select>
+        </label>
+      </div>
+      <div id="trend-chart" class="trend-chart"></div>
+      <p class="hint" id="trend-note"></p>
+      <details class="table-toggle">
+        <summary>Show as table</summary>
+        <div id="trend-table"></div>
+      </details>
+    </section>
+  </section>
+
+  <section id="tab-panel-method" class="tab-panel" hidden>
+    <section class="panel method">
+      <h2>How this works</h2>
+      <ol>
+        <li>
+          <strong>Imagery.</strong> Sentinel-2 Level-2A surface reflectance (ESA Copernicus),
+          MGRS tile 17RNJ, read directly from the public AWS Open Data bucket
+          (<code>s3://sentinel-cogs</code>). Only passes where at least half the study area
+          is cloud-free are used; clouds and cloud shadows are buffered by ~100 m because
+          haze at cloud edges reads as turbid water.
+        </li>
+        <li>
+          <strong>Where the water is.</strong> ESA WorldCover 2021 (10 m) permanent-water
+          class, shrunk by one pixel to drop mixed bank/dock pixels. Each pass then rejects
+          boats, bridges and sun glint (bright shortwave-infrared), and pixels where the
+          atmospheric correction clipped red to zero — common in the darkest tannic canals.
+        </li>
+        <li>
+          <strong>Atmospheric residual.</strong> The standard correction (Sen2Cor) is built
+          for land and leaves a small haze offset over water. Each pass subtracts the darkest
+          1% of deep offshore water in the red, red-edge, NIR and SWIR bands
+          (dark-object subtraction), where true water-leaving signal is essentially zero.
+        </li>
+        <li>
+          <strong>Zones.</strong> Seven waterway zones are scored separately, using the median
+          of every valid water pixel inside each.
+        </li>
+      </ol>
+
+      <h2>False-color composites</h2>
+      <div id="method-layers" class="method-grid"></div>
+
+      <h2>Indicators &amp; health score</h2>
+      <table class="method-table">
+        <thead><tr><th>Indicator</th><th>Formula (Sentinel-2 bands)</th><th>Good</th><th>Poor</th><th>Weight</th></tr></thead>
+        <tbody>
+          <tr><td>Chlorophyll-a proxy — NDCI<br><span class="cite">Mishra &amp; Mishra 2012</span></td><td><code>(B5 − B4) / (B5 + B4)</code></td><td>≤ −0.10 (≈7 µg/L)</td><td>≥ +0.10 (≈25 µg/L)</td><td>45%</td></tr>
+          <tr><td>Turbidity (FNU)<br><span class="cite">Dogliotti et al. 2015</span></td><td><code>228.1·ρ / (1 − ρ/0.1641)</code>, ρ = B4</td><td>≤ 3</td><td>≥ 20</td><td>40%</td></tr>
+          <tr><td>Floating algae / sargassum — FAI<br><span class="cite">Hu 2009</span></td><td><code>B8 − [B4 + (B11 − B4)·(833−665)/(1610−665)]</code>, share of water &gt; 0.01</td><td>≤ 1%</td><td>≥ 15%</td><td>15%</td></tr>
+        </tbody>
+      </table>
+      <p>
+        Each indicator scales linearly from 100 (good) to 0 (poor); the weighted sum is the
+        health score. <span class="status-inline good">Good ≥ 70</span>
+        <span class="status-inline fair">Fair 45–69</span>
+        <span class="status-inline poor">Poor &lt; 45</span>. For regulatory context, Florida's
+        Class III surface-water turbidity standard is 29 NTU above natural background
+        (Rule 62-302.530, F.A.C.); NOAA's estuarine eutrophication assessment treats
+        chlorophyll-a above 20 µg/L as high. The approximate chlorophyll-a equivalents use Mishra &amp; Mishra's NDCI curve, which was fitted in productive, turbid waters — treat them as rough.
+      </p>
+
+      <h2>Limits — read before acting on a number</h2>
+      <ul>
+        <li>
+          These are <strong>remote-sensing screening indicators, not lab measurements</strong>.
+          They are uncalibrated against local sampling; the index-to-concentration relationships
+          were developed elsewhere. Use them to decide where and when to sample, and compare
+          against Broward County's ambient water-quality monitoring before drawing conclusions.
+        </li>
+        <li>
+          <strong>Narrow canals are hard.</strong> Middle River, New River and many finger canals
+          are 20–60 m wide, i.e. 2–6 pixels. Bank vegetation, docks, boats and shade leak into
+          those pixels, and the red-edge band is 20 m. These zones carry a confidence rating;
+          treat "low" as "look at the imagery, don't trust the score."
+        </li>
+        <li>
+          <strong>Shallow, clear water</strong> (nearshore reef, sand flats) reflects the bottom,
+          which can read as turbidity. Dark tannic water (dissolved organic matter from runoff)
+          absorbs light and can read as <em>low</em> turbidity even when it isn't.
+        </li>
+        <li>
+          <strong>Bacteria (enterococci), dissolved oxygen, and nutrients are invisible from
+          orbit.</strong> Swim advisories and fish-kill risk still need field data.
+        </li>
+        <li>Rainy-season cloud cover (June–October) leaves long gaps between usable passes.</li>
+      </ul>
+
+      <h2>Refreshing the data</h2>
+      <p>
+        Everything on this page is produced by <code>scripts/wq_pipeline.py</code> (Python:
+        rasterio, numpy, pillow, pyproj), which writes <code>wq-data.js</code> and the images in
+        <code>wq/img/</code>. A scheduled GitHub Action re-runs it weekly. No accounts or API keys
+        are needed.
+      </p>
+    </section>
+  </section>
+</main>
+
+<div id="zone-modal" class="modal-overlay" hidden>
+  <div class="modal-panel" role="dialog" aria-modal="true">
+    <button id="modal-close" class="modal-close" aria-label="Close">&times;</button>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<footer>
+  <p id="data-footer"></p>
+  <p>
+    Contains modified Copernicus Sentinel data (2025–2026). Water mask: © ESA WorldCover project 2021, CC BY 4.0. Satellite indicators
+    are screening tools and are not a substitute for in-situ water-quality sampling.
+  </p>
+</footer>
+
+<script src="wq-data.js"></script>
+<script src="wq.js"></script>
+</body>
+</html>
