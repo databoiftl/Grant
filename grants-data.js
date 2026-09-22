@@ -239,31 +239,6 @@ const GRANTS = [
     urlLabel: "FWC Derelict Vessel Removal Grant Program",
   },
   {
-    id: "fwc-upland-invasive-plant",
-    name: "Upland Invasive Plant Management Program",
-    agency: "Florida Fish & Wildlife Conservation Commission, Invasive Plant Management Section (FWC-IPMS)",
-    level: "State",
-    levelGroup: "State",
-    summary:
-      "FWC's statewide program funding removal of Category I/II invasive upland plants — including Australian pine (Casuarina), Brazilian pepper, and melaleuca — on public conservation lands, coordinated through eleven Regional Invasive Plant Working Groups made up of local land managers. Confirmed real-world example: the Captiva Erosion Prevention District (a local special district) received a $400,000 FWC grant for Australian pine removal.",
-    eligibility:
-      "Land managers of federal, state, AND local government conservation land — explicitly not limited to state forest land. Applies via the relevant Regional Invasive Plant Working Group rather than a simple online portal.",
-    fundingRange: "Varies by project scope; the confirmed Captiva example was $400,000 for a single Australian pine removal project.",
-    match: "Not confirmed as mandatory — check directly with your Regional Invasive Plant Working Group",
-    cycle: "Annual planning cycle tied to FWC's Upland Program Handbook (published as e.g. '2025-2026 Uplands Program Handbook')",
-    nextDeadlineDate: null,
-    isEstimate: true,
-    deadlineNote:
-      "This isn't a simple fixed-deadline online application — projects are recommended through your Regional Invasive Plant Working Group as part of FWC's annual upland invasive-plant prioritization cycle. Contact FWC's Invasive Plant Management Section or your regional working group directly to get a Fort Lauderdale canal-bank/park Australian pine removal project into the pipeline; do not wait for a posted portal deadline.",
-    status: "contact_agency",
-    tags: { wq: 0, canal: 2, habitat: 2, boating: 0, resilience: 1 },
-    openPeriod: { type: "varies", label: "Annual prioritization cycle via Regional Invasive Plant Working Group — no fixed portal deadline" },
-    whyFit:
-      "The most direct match on this list for Australian pine removal specifically — this is the exact program (confirmed via a real funded example) that pays for large-scale invasive upland tree removal on public land, and it explicitly includes local government conservation land, not just state forests. Pair with USFWS Coastal Program or NFWF's National Coastal Resilience Fund elsewhere on this list for the mangrove-replanting half of a combined removal-and-restoration project.",
-    url: "https://myfwc.com/wildlifehabitats/habitat/invasive-plants/upland-plant/",
-    urlLabel: "FWC Upland Invasive Plant Management Program",
-  },
-  {
     id: "fwc-big-federal",
     name: "Boating Infrastructure Grant (BIG) — Tier 1 & 2",
     agency: "U.S. Fish & Wildlife Service, administered in Florida by FWC",
